@@ -74,7 +74,27 @@
     defaultLocale = "en_CA.UTF-8";
   };
 
+  users.extraUsers = [
+	{
+		name = "edwtjo";
+		uid = 1000;
+		group = "edwtjo";
+		extraGroups = [ "users" "wheel" ];
+		description = "Edward Tjörnhammar";
+		home = "/home/edwtjo";
+		shell = pkgs.zsh + "/bin/zsh";
+	}
+  ];
+
+  users.extraGroups = [
+	{
+		name = "edwtjo";
+		gid = 1000;
+	}
+  ];
+
   services.nixosManual.showManual = true;
   services.openssh.enable = true;
+  services.printing.enable = true;
 }
 
