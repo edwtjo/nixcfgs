@@ -1,0 +1,4 @@
+nixos
+=====
+
+NixOS configurations
