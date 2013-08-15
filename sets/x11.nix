@@ -2,20 +2,26 @@
 
 {
   environment.x11Packages = with pkgs; [
-    firefoxWrapper
-    wine
-    libreoffice
-    MPlayer
+    firefox
+    gimp
     gqview
-    scrot
-    xorg.xauth
-    rdesktop
-    xournal
-    inkscape
     haskellPackages.xmobar
     haskellPackages.xmonad
     haskellPackages.xmonadContrib
     haskellPackages.xmonadExtras
+    inkscape
+    libreoffice
+    mplayer
+    rdesktop
+    #read-edid
+    scrot
+    vlc
+    wine
+    x2vnc
+    xdg_utils
+    xorg.xauth
+    xournal
+    xsel
   ];
 
   services.xserver = {
@@ -30,4 +36,3 @@
 
   services.printing.enable = true;
 }
-

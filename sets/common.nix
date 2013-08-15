@@ -2,53 +2,89 @@
 
 {
   environment.systemPackages = with pkgs; [
-    vim
-    manpages
-    gitAndTools.gitFull
-    darcs
-    monotone
-    mercurial
-    gnumake
-    gcc
-    libtool
-    sqlite
-    screen
-    wget
-    haskellPackages.ghc
-    haskellPackages.haskellPlatform
-    haskellPackages.shelly
-    iptables
-    nmap
-    tcpdump
-    irssi
-    links
-    mutt
-    abook
-    patchelf
-    zlib
-    automake
-    autogen
+    #abook
+    ack
     autoconf
-    m4
-    libtool
-    pkgconfig
-    perlPackages.DBI perlPackages.DBDSQLite boehmgc perl sqlite
-    bison
-    flex
-    docbook5
-    docbook5_xsl
-    libxml2
-    libxslt
-    gdb
-    ltrace
-    darcs
+    autogen
+    automake
     bazaar
+    bison
     clang
     cmake
-    python
+    curl
+    darcs
     devicemapper
-    xdg_utils
+    dict
+    docbook5
+    docbook5_xsl
+    encfs
+    ethtool
+    fcron
+    fetchmail
+    flex
+    #fribid
+    gcc
+    gdb
+    gitAndTools.gitFull
+    gnumake
+    gnupg
+    gpm
+    haskellPackages.ghc
+    haskellPackages.haskellPlatform
+    haskellPackages.hledger
+    haskellPackages.hlint
+    haskellPackages.hoogle
+    #hfsplus
+    htop
+    iasl
+    iptables
+    iptables
+    irssi
+    jfsutils
+    libtool
+    libxml2
+    libxslt
+    links2
+    lshw
+    ltrace
+    m4
+    mairix
+    manpages
+    #mausezahn
     mc
+    mercurial
+    monotone
+    mutt
+    #nfs-utils
+    nmap
+    nmap
+    offlineimap
+    openjdk
+    openssh
+    openvpn
+    patchelf
+    perlPackages.DBI perlPackages.DBDSQLite boehmgc perl sqlite
+    pkgconfig
+    pv
+    python
+    qemu
+    screen
+    #slocate
+    #slrn
+    sqlite
+    #sshfs #WHAT!?
+    strace
+    taskwarrior
+    tcpdump
+    tcpdump
+    #tptest
+    tsocks
+    unison
+    vim
+    wget
+    wget
+    zlib
+    zsh
   ];
 
   environment.shellInit = ''
