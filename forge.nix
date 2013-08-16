@@ -3,6 +3,7 @@
 {
   require = [
     ./hw/dell-latitude-d420.nix
+    ./hw/encrypted-root.nix
     ./sets/common.nix
     ./sets/laptop.nix
     ./sets/x11.nix
@@ -14,13 +15,13 @@
 
   fileSystems = [
     { mountPoint = "/";
-      device = "/dev/sda3";
+      device = "/dev/mapper/cryptfs";
       fsType = "jfs";
     }
   ];
 
   swapDevices = [
-    { device = "/dev/sda2"; }
+    { device = "/dev/mapper/swap"; }
   ];
 
   networking = {
