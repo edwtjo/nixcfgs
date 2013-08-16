@@ -21,7 +21,7 @@
   ];
 
   swapDevices = [
-    { device = "/dev/mapper/swap"; }
+    { device = "/dev/mapper/cryptswap"; }
   ];
 
   networking = {
