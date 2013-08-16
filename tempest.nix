@@ -12,11 +12,6 @@
 
   boot.loader.grub.device = "/dev/sda";
 
-  services.xserver.synaptics = {
-    enable = true;
-    twoFingerScroll = true;
-  };
-
   fileSystems = [
     { mountPoint = "/";
       device = "/dev/sda3";
