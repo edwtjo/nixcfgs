@@ -6,6 +6,7 @@
     ./hw/encrypted-root.nix
     ./sets/common.nix
     ./sets/laptop.nix
+    ./sets/writing.nix
     ./sets/x11.nix
   ];
 
@@ -18,6 +19,10 @@
       device = "/dev/mapper/cryptfs";
       fsType = "jfs";
     }
+    { mountPoint = "/boot";
+     device = "/dev/sda1";
+     fsType = "ext2";
+    }
   ];
 
   swapDevices = [
@@ -28,6 +33,6 @@
       hostName = "forge";
   };
 
-  services.openssh.enable = true;
+  services.xserver.xkbModel = "pc105";
+  #nix.proxy = "http://www-gw.foi.se:8080";
 }
-
