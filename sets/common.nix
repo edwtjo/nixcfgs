@@ -3,7 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     #abook
-    ack
+    #ack
     autoconf
     autogen
     automake

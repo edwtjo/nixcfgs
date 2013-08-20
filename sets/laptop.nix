@@ -13,7 +13,7 @@
   };
 
   networking = {
-    enableWLAN = true;
+    wireless.enable = true;
     wicd.enable = true;
   };
 
