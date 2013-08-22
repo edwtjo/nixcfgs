@@ -38,7 +38,6 @@
     htop
     iasl
     iptables
-    iptables
     irssi
     jfsutils
     libtool
@@ -57,7 +56,6 @@
     mutt
     #nfs-utils
     nmap
-    nmap
     offlineimap
     openjdk
     openssh
@@ -67,7 +65,6 @@
     pkgconfig
     pv
     python
-    qemu
     screen
     #slocate
     #slrn
@@ -76,12 +73,10 @@
     strace
     taskwarrior
     tcpdump
-    tcpdump
     #tptest
     tsocks
     unison
     vim
-    wget
     wget
     zlib
     zsh
