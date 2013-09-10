@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    #abook
+    abook
     #ack
     autoconf
     autogen
@@ -23,6 +23,7 @@
     fetchmail
     flex
     #fribid
+    fuse
     gcc
     gdb
     gitAndTools.gitFull
@@ -40,6 +41,7 @@
     iptables
     irssi
     jfsutils
+    keychain
     libtool
     libxml2
     libxslt
@@ -68,8 +70,8 @@
     screen
     #slocate
     #slrn
+    sshFuse
     sqlite
-    #sshfs #WHAT!?
     strace
     taskwarrior
     tcpdump
