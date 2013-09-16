@@ -2,7 +2,9 @@
 
 {
   environment.x11Packages = with pkgs; [
+    cinepaint
     conky
+    darktable
     firefox
     gimp
     gqview
