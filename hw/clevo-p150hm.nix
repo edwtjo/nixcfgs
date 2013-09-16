@@ -1,17 +1,21 @@
-{ config, pkgs, modulesPath, ... }:
+{ config, pkgs, ... }:
 
 {
   require = [
-    "${modulesPath}/profiles/base.nix"
-    "${modulesPath}/installer/scan/not-detected.nix"
+    <nixos/modules/installer/scan/not-detected.nix>
   ];
 
-  boot.initrd.kernelModules = [ "ohci_hcd" "ehci_hcd" "ahci" "ohci1394" "usbhid" "usb_storage" ];
-  boot.kernelModules = [ "acpi-cpufreq" "kvm-intel" "wl" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+  boot.initrd.kernelModules = [ "ehci_hcd" "ahci" "xhci_hcd" "firewire_ohci" "usb_storage" ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
 
-  nix.maxJobs = 2;
+  environment.systemPackages = with pkgs; [ 
+    firmwareLinuxNonfree
+  ];
+
+  hardware.enableAllFirmware = true;
+
+  nix.maxJobs = 8;
 
   services.xserver.videoDrivers = [ "nvidia" ];
 }
-
