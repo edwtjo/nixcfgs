@@ -6,6 +6,9 @@
     ./hw/encrypted-root.nix
     ./sets/common.nix
     ./sets/laptop.nix
+    ./sets/writing.nix
+    ./sets/virtualization.nix
+    ./sets/music.nix
     ./sets/x11.nix
   ];
 
@@ -35,6 +38,5 @@
   };
 
   services.openssh.enable = true;
-
+  services.xserver.xkbModel = "pc105";
 }
-
