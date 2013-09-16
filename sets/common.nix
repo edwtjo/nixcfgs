@@ -70,7 +70,7 @@
     screen
     #slocate
     #slrn
-    sshFuse
+    #sshFuse
     sqlite
     strace
     taskwarrior
@@ -129,5 +129,6 @@
   services.nixosManual.showManual = true;
   services.openssh.enable = true;
   services.printing.enable = true;
+  services.fcron.enable = true;
 }
 
