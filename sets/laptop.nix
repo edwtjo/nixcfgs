@@ -1,11 +1,10 @@
 {config, pkgs, ...}:
 
 {
-  environment.x11Packages = with pkgs; [
-    wicd
+  environment.systemPackages = with pkgs; [ 
+    acpi 
+    wpa_supplicant
   ];
-
-  environment.systemPackages = [ pkgs.acpi ];
 
   services.xserver.synaptics = {
     enable = true;
@@ -14,7 +13,7 @@
 
   networking = {
     wireless.enable = true;
-    wicd.enable = true;
+    wicd.enable = false;
   };
 
   powerManagement.enable = true;
