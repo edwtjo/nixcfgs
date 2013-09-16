@@ -14,6 +14,7 @@
     haskellPackages.xmonadExtras
     inkscape
     imagemagickBig
+    keepassx
     libreoffice
     mplayer
     rdesktop
