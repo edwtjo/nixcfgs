@@ -9,7 +9,7 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  environment.systemPackages = with pkgs; [ 
+  environment.systemPackages = with pkgs; [
     firmwareLinuxNonfree
   ];
 
