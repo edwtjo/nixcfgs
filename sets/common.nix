@@ -3,11 +3,11 @@
 {
   environment.systemPackages = with pkgs; [
     abook
-    #ack
     autoconf
     autogen
     automake
     bazaar
+    bc
     bison
     clang
     cmake
@@ -22,7 +22,6 @@
     fcron
     fetchmail
     flex
-    #fribid
     fuse
     gcc
     gdb
@@ -38,6 +37,7 @@
     #hfsplus
     htop
     iasl
+    inetutils
     iptables
     irssi
     jfsutils
@@ -51,7 +51,6 @@
     m4
     mairix
     manpages
-    #mausezahn
     mc
     mercurial
     monotone
@@ -68,18 +67,15 @@
     pv
     python
     screen
-    #slocate
-    #slrn
-    #sshFuse
     sqlite
     strace
     taskwarrior
     tcpdump
-    #tptest
     tsocks
     unison
     vim
     wget
+    which
     zlib
     zsh
   ];
