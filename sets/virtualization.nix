@@ -5,7 +5,7 @@
     ssvnc
     virtinst
     virtmanager
-    qemu
+    qemu_kvm
   ];
 
   virtualisation.libvirtd.enable = true;
