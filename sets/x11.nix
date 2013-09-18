@@ -5,7 +5,8 @@
     cinepaint
     conky
     darktable
-    firefox
+    dcraw
+    firefoxWrapper
     gimp
     gqview
     haskellPackages.xmobar
@@ -42,4 +43,14 @@
   };
 
   services.printing.enable = true;
+
+  nixpkgs.config = {
+    firefox = {
+      enableAdobeFlash = true;
+      enableDjvu = true;
+      enableFriBIDPlugin = true;
+      #enableMPlayer = true;
+    };
+
+    rxvt_unicode = {
 }
