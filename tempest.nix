@@ -12,7 +12,7 @@
     ./sets/x11.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_3_11;
+  boot.kernelPackages = pkgs.linuxPackages_3_10;
 
   boot.loader.grub.device = "/dev/sdb";
 
