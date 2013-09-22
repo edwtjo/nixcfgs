@@ -6,7 +6,7 @@
   ];
 
   boot.initrd.kernelModules = [ "ehci_hcd" "ahci" "xhci_hcd" "firewire_ohci" "usb_storage" ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-intel" "fuse" ];
   boot.extraModulePackages = [ ];
 
   environment.systemPackages = with pkgs; [
