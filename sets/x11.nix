@@ -18,6 +18,7 @@
     keepassx
     libreoffice
     mplayer
+    mupdf
     rdesktop
     #read-edid
     rxvt_unicode
@@ -25,6 +26,7 @@
     vlc
     wine
     x2vnc
+    xbmc
     xdg_utils
     xorg.xauth
     xournal
