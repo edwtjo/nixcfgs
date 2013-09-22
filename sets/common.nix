@@ -42,6 +42,7 @@
     irssi
     jfsutils
     keychain
+    lftp
     libtool
     libxml2
     libxslt
@@ -61,11 +62,13 @@
     openjdk
     openssh
     openvpn
+    p7zip
     patchelf
     perlPackages.DBI perlPackages.DBDSQLite boehmgc perl sqlite
     pkgconfig
     pv
     python
+    sshfsFuse
     screen
     sqlite
     strace
