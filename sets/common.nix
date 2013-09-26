@@ -74,6 +74,7 @@
     strace
     taskwarrior
     tcpdump
+    tmux
     tsocks
     unison
     vim
