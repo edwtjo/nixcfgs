@@ -24,10 +24,13 @@
     rxvt_unicode
     scrot
     vlc
+    vimHugeX
     wine
     x2vnc
     xbmc
     xdg_utils
+    xdotool
+    xfontsel
     xorg.xauth
     xournal
     xscreensaver

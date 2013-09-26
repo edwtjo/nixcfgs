@@ -2,12 +2,17 @@
 
 {
   environment.systemPackages = with pkgs; [
-    qjackctl
-    jack_rack
-    jackaudio
+    aumix
+    ardour3
+    cmus
     guitarix
     hydrogen
-    ardour3
+    jack_rack
+    jackaudio
+    mpg123
+    picard
+    sox
+    qjackctl
   ];
 }
 
