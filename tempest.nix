@@ -12,22 +12,29 @@
     ./sets/x11.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_3_10;
+  boot = {
+    kernelPackages = pkgs.linuxPackages_3_11;
+    loader.grub = {
+      device = "/dev/sda";
+    };
+  };
 
-  boot.loader.grub.device = "/dev/sdb";
+  fileSystems = {
+    "/boot" = {
+      device = "/dev/sda1";
+      fsType = "ext2";
+    };
 
-  fileSystems = [
-    {
-      mountPoint = "/";
+    "/" = {
       device = "/dev/mapper/cryptfs";
       fsType = "ext4";
-    }
-    {
-      mountPoint = "/boot";
-      device = "/dev/sdb1";
-      fsType = "ext2";
-    }
-  ];
+    };
+
+    "/home" = {
+      device = "/dev/mapper/crypthome";
+      fsType = "ext4";
+    };
+  };
 
   swapDevices = [
     { device = "/dev/mapper/cryptswap"; }
@@ -37,6 +44,7 @@
     hostName = "tempest";
   };
 
-  services.openssh.enable = true;
-  services.xserver.xkbModel = "pc105";
+  services = {
+    openvpn.enable = true;
+  };
 }

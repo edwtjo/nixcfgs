@@ -2,7 +2,12 @@
 
 {
   environment.systemPackages = with pkgs; [
-    texLive
+    aspell
+    aspellDicts.en
+    aspellDicts.es
+    aspellDicts.sv
+    dictdWiktionary
+    dictdWordnet
+    texLiveFull
   ];
 }
-

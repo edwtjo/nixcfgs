@@ -5,9 +5,11 @@
     <nixos/modules/installer/scan/not-detected.nix>
   ];
 
-  boot.initrd.kernelModules = [ "ehci_hcd" "ahci" "xhci_hcd" "firewire_ohci" "usb_storage" ];
-  boot.kernelModules = [ "kvm-intel" "fuse" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd.kernelModules = [ "ehci_hcd" "ahci" "xhci_hcd" "usb_storage" ];
+    kernelModules = [ "kvm-intel" "fuse" ];
+    extraModulePackages = [ ];
+  }
 
   environment.systemPackages = with pkgs; [
     firmwareLinuxNonfree
@@ -15,10 +17,12 @@
 
   hardware.enableAllFirmware = true;
 
-  nix.extraOptions = ''
-    build-cores = 8
-  '';
-  nix.maxJobs = 8;
+  nix = {
+    extraOptions = ''
+      build-cores = 8
+    '';
+    maxJobs = 8;
+  };
 
   services.xserver.videoDrivers = [ "nvidia" ];
 }

@@ -1,5 +1,8 @@
 {config, pkgs, ...}:
-
+let maybeEmacs = if ! config.services.xserver.enable
+                 then pkgs.emacs24
+                 else null;
+in
 {
   environment.systemPackages = with pkgs; [
     abook
@@ -18,9 +21,11 @@
     docbook5
     docbook5_xsl
     encfs
+    maybeEmacs
     ethtool
     fcron
     fetchmail
+    file
     flex
     fuse
     gcc
@@ -29,25 +34,27 @@
     gnumake
     gnupg
     gpm
+    haskellPackages.cabalDev
     haskellPackages.ghc
     haskellPackages.haskellPlatform
     haskellPackages.hledger
     haskellPackages.hlint
     haskellPackages.hoogle
-    #hfsplus
     htop
     iasl
     inetutils
     iptables
     irssi
-    jfsutils
     keychain
     lftp
+    libnotify
     libtool
     libxml2
     libxslt
     links2
+    lm_sensors
     lshw
+    lsof
     ltrace
     m4
     mairix
@@ -55,8 +62,8 @@
     mc
     mercurial
     monotone
+    mosh
     mutt
-    #nfs-utils
     nmap
     offlineimap
     openjdk
@@ -65,7 +72,9 @@
     p7zip
     patchelf
     perlPackages.DBI perlPackages.DBDSQLite boehmgc perl sqlite
+    posix_man_pages
     pkgconfig
+    psmisc
     pv
     python
     sshfsFuse
@@ -78,6 +87,7 @@
     tsocks
     unison
     vim
+    w3m
     wget
     which
     zlib
@@ -87,16 +97,17 @@
   environment.shellInit = ''
   '';
 
-  nix.useChroot = true;
-  time.timeZone = "Europe/Stockholm";
+  nix = {
+    useChroot = true;
+    gc.automatic = true;
+  };
 
-  boot.initrd.kernelModules = [
-    "jfs"
-  ];
+  time.timeZone = "Europe/Stockholm";
 
   boot.loader.grub = {
     enable = true;
     version = 2;
+    memtest86 = true;
   };
 
   networking.interfaceMonitor.enable = true;
@@ -109,8 +120,8 @@
 
   users.extraUsers = [
 	{
+    createHome = true;
 		name = "edwtjo";
-		uid = 1000;
 		group = "edwtjo";
 		extraGroups = [ "users" "wheel" ];
 		description = "Edward Tjörnhammar";
@@ -122,13 +133,27 @@
   users.extraGroups = [
 	{
 		name = "edwtjo";
-		gid = 1000;
 	}
   ];
 
-  services.nixosManual.showManual = true;
-  services.openssh.enable = true;
-  services.printing.enable = true;
-  services.fcron.enable = true;
-}
+  security.sudo.enable = true;
 
+  services = {
+    nixosManual.showManual = true;
+    openssh = {
+      enable = true;
+      passwordAuthentication = true;
+    };
+    printing = {
+      enable = true;
+      drivers = with pkgs; [ hplip gutenprint cups_pdf_filter ];
+    };
+    fcron.enable = true;
+    locate.enable = true;
+  };
+
+  hardware = {
+    pulseaudio.enable = false;
+    sane.enable = false;
+  };
+}
