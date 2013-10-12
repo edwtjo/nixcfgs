@@ -27,6 +27,7 @@ in
     fetchmail
     file
     flex
+    fortune
     fuse
     gcc
     gdb

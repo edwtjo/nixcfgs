@@ -1,7 +1,9 @@
 { config, pkgs, ...}:
+
 let maybeEmacs = if config.services.xserver.enable
                  then pkgs.emacs24
                  else null;
+in
 {
   environment.x11Packages = with pkgs; [
     bitcoin
@@ -38,7 +40,6 @@ let maybeEmacs = if config.services.xserver.enable
     xlockmore # confirmed working noseguy
     xorg.xauth
     xournal
-    xscreensaver
     xsel
   ];
 
