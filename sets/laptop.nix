@@ -21,7 +21,7 @@
   networking = {
     wireless = {
       enable = true;
-      interface = "wlan0";
+      interfaces = [ "wlp4s0" ];
       userControlled.enable = true;
     };
   };
