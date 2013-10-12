@@ -6,12 +6,22 @@
   ];
 
   boot = {
-    initrd.kernelModules = [ "ehci_hcd" "ahci" "xhci_hcd" "usb_storage" ];
+    initrd = {
+      supportedFilesystems = [ "jfs" "ext2" ];
+      extraUtilsCommands =
+      ''
+        # jfs on rootfs means we must have fsck
+        cp -v ${pkgs.jfsutils}/sbin/fsck.jfs $out/bin
+      '';
+      kernelModules = [ "ehci_hcd" "ahci" "xhci_hcd" "usb_storage" "jfs" ];
+    };
     kernelModules = [ "kvm-intel" "fuse" ];
-    extraModulePackages = [ ];
-  }
+    extraModulePackages = [ "jfsutils" ];
+  };
 
   environment.systemPackages = with pkgs; [
+    jfsutils
+    jfsrec
     firmwareLinuxNonfree
   ];
 

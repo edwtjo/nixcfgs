@@ -27,12 +27,12 @@
 
     "/" = {
       device = "/dev/mapper/cryptfs";
-      fsType = "ext4";
+      fsType = "jfs";
     };
 
     "/home" = {
       device = "/dev/mapper/crypthome";
-      fsType = "ext4";
+      fsType = "jfs";
     };
   };
 
