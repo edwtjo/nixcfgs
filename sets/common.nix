@@ -93,8 +93,6 @@ in
     DBDSQLite
   ]
   ) ++ ( with haskellPackages; [
-    Agda
-    AgdaExecutable
     cabalInstall
     cabalDev
     cabalInstall
