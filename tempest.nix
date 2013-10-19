@@ -12,6 +12,8 @@
     ./sets/x11.nix
   ];
 
+  environment.nix = pkgs.nixUnstable;
+
   boot = {
     kernelPackages = pkgs.linuxPackages_3_11;
     loader.grub = {
@@ -42,6 +44,7 @@
 
   networking = {
     hostName = "tempest";
+    interfaceMonitor.enable = true;
   };
 
   services = {
