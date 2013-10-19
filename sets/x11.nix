@@ -16,11 +16,13 @@ in
     gimp
     gnome.gnomeicontheme
     gqview
-    haskellPackages.xmobar
-    haskellPackages.xmonad
-    haskellPackages.xmonadContrib
-    haskellPackages.xmonadExtras
     gtk
+  ] ++ ( with haskellPackages; [
+    xmobar
+    xmonad
+    xmonadContrib
+    xmonadExtras
+  ] ) ++ [
     hicolor_icon_theme
     inkscape
     imagemagickBig
