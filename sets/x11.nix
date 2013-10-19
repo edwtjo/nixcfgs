@@ -14,11 +14,14 @@ in
     maybeEmacs
     firefoxWrapper
     gimp
+    gnome.gnomeicontheme
     gqview
     haskellPackages.xmobar
     haskellPackages.xmonad
     haskellPackages.xmonadContrib
     haskellPackages.xmonadExtras
+    gtk
+    hicolor_icon_theme
     inkscape
     imagemagickBig
     keepassx
@@ -28,12 +31,24 @@ in
     rdesktop
     rxvt_unicode
     scrot
+    shared_mime_info
     stalonetray
     vlc
     vimHugeX
     wine
     x2vnc
     xbmc
+  ] ++ ( with xfce; [
+    xfdesktop
+    gvfs
+    gtk_xfce_engine
+    thunar
+    thunar_volman
+    thunar_archive_plugin
+    xfce4icontheme
+    xfce4settings
+    xfconf
+  ] ) ++ [
     xdg_utils
     xdotool
     xfontsel
@@ -41,7 +56,21 @@ in
     xorg.xauth
     xournal
     xsel
+    zathura
   ];
+
+  environment.shellInit = ''
+      # Set GTK_PATH so that GTK+ can find the Xfce theme engine.
+      export GTK_PATH=${pkgs.xfce.gtk_xfce_engine}/lib/gtk-2.0
+
+      # Set GTK_DATA_PREFIX so that GTK+ can find the Xfce themes.
+      export GTK_DATA_PREFIX=${config.system.path}
+
+      # Set GIO_EXTRA_MODULES so that gvfs works.
+      export GIO_EXTRA_MODULES=${pkgs.xfce.gvfs}/lib/gio/modules
+  '';
+
+  environment.pathsToLink = [ "/share/xfce4" "/share/themes" "/share/mime" "/share/desktop-directories"];
 
   services = {
     avahi.enable = true;
@@ -63,7 +92,8 @@ in
 
       desktopManager = {
         xterm.enable = false;
-        default = "none";
+        xfce.enable = true;
+        default = "xfce";
       };
 
       displayManager.kdm.enable = true;

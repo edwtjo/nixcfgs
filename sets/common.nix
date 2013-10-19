@@ -12,6 +12,7 @@ in
     bazaar
     bc
     bison
+    boehmgc
     clang
     cmake
     curl
@@ -37,6 +38,7 @@ in
     gpm
     htop
     iasl
+    idutils
     inetutils
     iptables
     irssi
@@ -82,7 +84,6 @@ in
     tsocks
     unison
     vim
-    w3m
     wget
     which
     zlib
