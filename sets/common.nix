@@ -35,12 +35,6 @@ in
     gnumake
     gnupg
     gpm
-    haskellPackages.cabalDev
-    haskellPackages.ghc
-    haskellPackages.haskellPlatform
-    haskellPackages.hledger
-    haskellPackages.hlint
-    haskellPackages.hoogle
     htop
     iasl
     inetutils
@@ -72,7 +66,7 @@ in
     openvpn
     p7zip
     patchelf
-    perlPackages.DBI perlPackages.DBDSQLite boehmgc perl sqlite
+    perl
     posix_man_pages
     pkgconfig
     psmisc
@@ -93,7 +87,25 @@ in
     which
     zlib
     zsh
-  ];
+  ] ++ ( with perlPackages; [
+    DBI
+    DBDSQLite
+  ]
+  ) ++ ( with haskellPackages; [
+    Agda
+    AgdaExecutable
+    cabalInstall
+    cabalDev
+    cabalInstall
+    DAV
+    dbus
+    ghc
+    haskellPlatform
+    hledger
+    hlint
+    hoogle
+    ]
+  );
 
   environment.shellInit = ''
   '';
