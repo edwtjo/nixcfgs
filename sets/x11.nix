@@ -14,9 +14,14 @@ in
     maybeEmacs
     firefoxWrapper
     gimp
-    gnome.gnomeicontheme
+  ] ++ ( with gnome; [
+    GConf
+    gnomeicontheme
+    gvfs
+  ] ) ++ [
     gqview
     gtk
+    gvfs
   ] ++ ( with haskellPackages; [
     xmobar
     xmonad
