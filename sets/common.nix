@@ -69,6 +69,7 @@ in
     p7zip
     patchelf
     perl
+    polkit
     posix_man_pages
     pkgconfig
     psmisc

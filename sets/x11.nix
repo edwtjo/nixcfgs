@@ -11,6 +11,7 @@ in
     conky
     darktable
     dcraw
+    dunst
     maybeEmacs
     firefoxWrapper
     gimp
@@ -46,12 +47,13 @@ in
     x2vnc
     xbmc
   ] ++ ( with xfce; [
-    xfdesktop
+    exo
     gvfs
     gtk_xfce_engine
     thunar
     thunar_volman
     thunar_archive_plugin
+    xfdesktop
     xfce4icontheme
     xfce4settings
     xfconf
