@@ -10,6 +10,7 @@
     jack_rack
     jackaudio
     mpg123
+    ncmpcpp
     picard
     sox
     qjackctl
