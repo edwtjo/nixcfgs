@@ -1,8 +1,4 @@
 {config, pkgs, ...}:
-let maybeEmacs = if ! config.services.xserver.enable
-                 then pkgs.emacs24
-                 else null;
-in
 {
   environment.systemPackages = with pkgs; [
     abook
@@ -21,8 +17,8 @@ in
     dict
     docbook5
     docbook5_xsl
+    emacs24
     encfs
-    maybeEmacs
     ethtool
     fcron
     fetchmail
@@ -53,6 +49,7 @@ in
     lshw
     lsof
     ltrace
+    lxc
     m4
     mairix
     manpages
@@ -89,11 +86,11 @@ in
     which
     zlib
     zsh
-  ] ++ ( with perlPackages; [
+    ( with perlPackages; [
     DBI
     DBDSQLite
-  ]
-  ) ++ ( with haskellPackages; [
+    ])
+    ( with haskellPackages; [
     cabalInstall
     cabalDev
     cabalInstall
@@ -101,11 +98,14 @@ in
     dbus
     ghc
     haskellPlatform
+    haddock
     hledger
     hlint
     hoogle
-    ]
-  );
+    stylishHaskell
+    zlib
+    ])
+  ];
 
   environment.shellInit = ''
   '';

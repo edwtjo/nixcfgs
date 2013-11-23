@@ -1,9 +1,4 @@
 { config, pkgs, ...}:
-
-let maybeEmacs = if config.services.xserver.enable
-                 then pkgs.emacs24
-                 else null;
-in
 {
   environment.x11Packages = with pkgs; [
     bitcoin
@@ -12,23 +7,23 @@ in
     darktable
     dcraw
     dunst
-    maybeEmacs
+    emacs24
     firefoxWrapper
     gimp
-  ] ++ ( with gnome; [
+    ( with gnome; [
     GConf
     gnomeicontheme
     gvfs
-  ] ) ++ [
+    ])
     gqview
     gtk
     gvfs
-  ] ++ ( with haskellPackages; [
+    ( with haskellPackages; [
     xmobar
     xmonad
     xmonadContrib
     xmonadExtras
-  ] ) ++ [
+    ])
     hicolor_icon_theme
     inkscape
     imagemagickBig
@@ -36,6 +31,7 @@ in
     libreoffice
     mplayer
     mupdf
+    polkit_gnome
     rdesktop
     rxvt_unicode
     scrot
@@ -44,9 +40,11 @@ in
     vlc
     vimHugeX
     wine
+    transmission_gtk
+    transmission_remote_gtk
     x2vnc
     xbmc
-  ] ++ ( with xfce; [
+    ( with xfce; [
     exo
     gvfs
     gtk_xfce_engine
@@ -57,7 +55,7 @@ in
     xfce4icontheme
     xfce4settings
     xfconf
-  ] ) ++ [
+    ])
     xdg_utils
     xdotool
     xfontsel
