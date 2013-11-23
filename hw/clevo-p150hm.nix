@@ -16,7 +16,7 @@
       kernelModules = [ "ehci_hcd" "ahci" "xhci_hcd" "usb_storage" "jfs" ];
     };
     kernelModules = [ "kvm-intel" "fuse" ];
-    extraModulePackages = [ "jfsutils" ];
+    extraModulePackages = [ pkgs.jfsutils ];
   };
 
   environment.systemPackages = with pkgs; [
