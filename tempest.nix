@@ -10,6 +10,8 @@
     ./sets/virtualization.nix
     ./sets/music.nix
     ./sets/x11.nix
+    ./sets/games.nix
+    ./sets/java-dev.nix
   ];
 
   environment.nix = pkgs.nixUnstable;
