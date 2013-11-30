@@ -1,14 +1,10 @@
 {config, pkgs, ...}:
 
 {
-
   environment = {
     systemPackages = with pkgs; [
       acpi
       wpa_supplicant
-    ];
-
-    x11Packages = with pkgs; [
       wpa_supplicant_gui
     ];
   };
@@ -27,5 +23,4 @@
   };
 
   powerManagement.enable = true;
-
 }

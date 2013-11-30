@@ -2,17 +2,9 @@
 {
   environment.systemPackages = with pkgs; [
     abook
-    autoconf
-    autogen
-    automake
     bazaar
     bc
-    bison
-    boehmgc
-    clang
-    cmake
     curl
-    darcs
     devicemapper
     dict
     docbook5
@@ -26,9 +18,6 @@
     flex
     fortune
     fuse
-    gcc
-    gdb
-    gitAndTools.gitFull
     gnumake
     gnupg
     gpm
@@ -91,18 +80,9 @@
     DBDSQLite
     ])
     ( with haskellPackages; [
-    cabalInstall
-    cabalDev
-    cabalInstall
     DAV
     dbus
-    ghc
-    haskellPlatform
-    haddock
     hledger
-    hlint
-    hoogle
-    stylishHaskell
     zlib
     ])
   ];

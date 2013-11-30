@@ -11,7 +11,7 @@
     ./sets/music.nix
     ./sets/x11.nix
     ./sets/games.nix
-    ./sets/java-dev.nix
+    ./sets/developer.nix
   ];
 
   environment.nix = pkgs.nixUnstable;
