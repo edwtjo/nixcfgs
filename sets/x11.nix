@@ -1,6 +1,6 @@
 { config, pkgs, ...}:
 {
-  environment.x11Packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     bitcoin
     cinepaint
     conky
@@ -19,10 +19,9 @@
     gtk
     gvfs
     ( with haskellPackages; [
+    (ghcWithPackagesOld (self : with self;
+      [xmonad xmonadContrib xmonadExtras]))
     xmobar
-    xmonad
-    xmonadContrib
-    xmonadExtras
     ])
     hicolor_icon_theme
     inkscape
@@ -60,6 +59,7 @@
     xdotool
     xfontsel
     xlockmore # confirmed working noseguy
+    xorg.xmessage
     xorg.xauth
     xournal
     xsel
