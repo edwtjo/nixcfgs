@@ -4,7 +4,6 @@
   require = [
     ./hw/kvm.nix
     ./sets/common.nix
-    ./sets/laptop.nix
     ./sets/writing.nix
     ./sets/x11.nix
     ./sets/developer.nix

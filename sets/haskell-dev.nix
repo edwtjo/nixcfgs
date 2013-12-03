@@ -8,6 +8,7 @@
     ghcCore
     haddock
     haskellPlatform
+    hasktags
     hlint
     hoogle
     stylishHaskell
