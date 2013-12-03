@@ -3,6 +3,7 @@
   require = [
     ./java-dev.nix
     ./haskell-dev.nix
+    ./nix-dev.nix
   ];
   environment.systemPackages = with pkgs; [
     autoconf
