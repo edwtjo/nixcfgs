@@ -16,7 +16,9 @@
     darcs
     gcc
     gdb
-    gitAndTools.gitFull
-    topGit
+    (with gitAndTools; [
+      gitFull
+      topGit
+    ])
   ];
 }
