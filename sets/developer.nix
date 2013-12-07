@@ -17,5 +17,6 @@
     gcc
     gdb
     gitAndTools.gitFull
+    topGit
   ];
 }
