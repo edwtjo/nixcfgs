@@ -1,6 +1,7 @@
 {config, pkgs, ...}:
 {
   require = [
+    ./embedded-dev.nix
     ./java-dev.nix
     ./haskell-dev.nix
     ./nix-dev.nix

@@ -4,6 +4,6 @@
     androidsdk_4_1
     apacheAntOpenJDK
     maven
-    ideas.idea_community_13
+    ideas.idea_community_1301
   ];
 }
