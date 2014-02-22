@@ -1,5 +1,11 @@
 {config, pkgs, ...}:
 {
+
+  nix = {
+    useChroot = true;
+    gc.automatic = true;
+  };
+
   environment.systemPackages = with pkgs; [
     abook
     bazaar
