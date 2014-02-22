@@ -11,9 +11,5 @@
 
   virtualisation.libvirtd.enable = true;
 
-  users.extraGroups = [
-  {
-    name = "libvirtd";
-  }
-  ];
+  users.extraGroups.libvirtd = { };
 }
