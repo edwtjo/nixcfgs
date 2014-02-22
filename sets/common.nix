@@ -46,15 +46,12 @@
     ltrace
     lxc
     m4
-    mairix
     manpages
     mc
     mercurial
     monotone
     mosh
-    mutt
     nmap
-    offlineimap
     openjdk
     openssh
     openvpn
@@ -95,11 +92,6 @@
 
   environment.shellInit = ''
   '';
-
-  nix = {
-    useChroot = true;
-    gc.automatic = true;
-  };
 
   time.timeZone = "Europe/Stockholm";
 
