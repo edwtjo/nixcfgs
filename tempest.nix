@@ -19,6 +19,7 @@
   boot = {
     kernelPackages = pkgs.linuxPackages_3_11;
     loader.grub = {
+      enable = true;
       device = "/dev/sda";
     };
   };
