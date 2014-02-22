@@ -20,8 +20,8 @@
     gvfs
     ( with haskellPackages; [
     (ghcWithPackagesOld (self : with self;
-      [xmonad xmonadContrib xmonadExtras]))
-    xmobar
+      [xmobar xmonad xmonadContrib xmonadExtras
+       haskellPlatform pipes criterion ]))
     ])
     hicolor_icon_theme
     inkscape
