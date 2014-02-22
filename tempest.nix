@@ -14,7 +14,7 @@
     ./sets/developer.nix
   ];
 
-  environment.nix = pkgs.nixUnstable;
+  nix.package = pkgs.nixUnstable;
 
   boot = {
     kernelPackages = pkgs.linuxPackages_3_11;
