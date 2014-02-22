@@ -9,5 +9,6 @@
     dictdWiktionary
     dictdWordnet
     texLiveFull
+    haskellPackages.pandoc
   ];
 }
