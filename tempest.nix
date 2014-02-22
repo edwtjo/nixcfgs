@@ -5,6 +5,7 @@
     ./hw/clevo-p150hm.nix
     ./hw/encrypted-root.nix
     ./sets/common.nix
+    ./sets/mail.nix
     ./sets/laptop.nix
     ./sets/writing.nix
     ./sets/virtualization.nix
