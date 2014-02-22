@@ -2,8 +2,9 @@
 {
   environment.systemPackages = with pkgs; [
     androidsdk_4_1
-    apacheAntOpenJDK
+    ant
     maven
-    ideas.idea_community_1301
+    ideas.idea_community_1302
+    openjdk
   ];
 }
