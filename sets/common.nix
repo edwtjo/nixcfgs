@@ -100,7 +100,7 @@
   boot.loader.grub = {
     enable = true;
     version = 2;
-    memtest86 = true;
+    memtest86.enable = true;
   };
 
   networking.interfaceMonitor.enable = true;
