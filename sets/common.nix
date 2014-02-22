@@ -111,23 +111,22 @@
     defaultLocale = "en_CA.UTF-8";
   };
 
-  users.extraUsers = [
-	{
-    createHome = true;
-		name = "edwtjo";
-		group = "edwtjo";
-		extraGroups = [ "users" "wheel" ];
-		description = "Edward Tjörnhammar";
-		home = "/home/edwtjo";
-		shell = pkgs.zsh + "/bin/zsh";
-	}
-  ];
-
-  users.extraGroups = [
-	{
-		name = "edwtjo";
-	}
-  ];
+  users = {
+    extraUsers.edwtjo =
+	  {
+      createHome = true;
+      uid = 1000;
+		  group = "edwtjo";
+		  extraGroups = [ "users" "wheel" ];
+		  description = "Edward Tjörnhammar";
+		  home = "/home/edwtjo";
+		  shell = pkgs.zsh + "/bin/zsh";
+		   openssh.authorizedKeys.keys = [
+		   "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA2UX8S8A0kER3VqZZc53uHdOBMDpgIziuEu27Ws2PGWrvFCsHiTxxh/Hu5h+c+NHgS3hIqEKwmTHJXZKIozFjhmhRzf6yPnOItQqva9895qmKpHXCnAFWEfAP0IbZCo/wSEyzm+zLdUi3vDxe/ko2jbDjzyg6ZgJYPDVcqCYP6z4gem9/GvgcblEgoa1xnIxrTn42CWSoZRsjOXshpmCsJnfGu61zrqejAQLkP6rP05ngklJN5ZMPltXr1UzrfO2pr3ie5UJBqBbbS/0rQoK+Z2SBRHp0JuvzGaM3ppw2O9IA9dZAHMVeJiMysSoTx3Y48oAxhs6HLBYBZP5wqu/61Q== "
+		   ];
+	  };
+    extraGroups.edwtjo.gid = 1000;
+  };
 
   security.sudo.enable = true;
 
