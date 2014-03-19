@@ -2,6 +2,7 @@
 
 {
   require = [
+    ./q.nix
     ./hw/clevo-p150hm.nix
     ./hw/encrypted-root.nix
     ./sets/common.nix
@@ -12,8 +13,13 @@
     ./sets/music.nix
     ./sets/x11.nix
     ./sets/games.nix
+    ./sets/math.nix
     ./sets/developer.nix
+    ./user/edwtjo.nix
+    ./user/admin.nix
   ];
+
+  q.admin.remoteRootKeys = [ "edwtjo" ];
 
   nix.package = pkgs.nixUnstable;
 
