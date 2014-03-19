@@ -8,6 +8,7 @@
     aspellDicts.sv
     dictdWiktionary
     dictdWordnet
+    ghostscript
     texLiveFull
     haskellPackages.pandoc
   ];
