@@ -3,7 +3,7 @@
 {
   require = [
     ./hw/clevo-p150hm.nix
-    ./hw/encrypted-root.nix
+    ./hw/encrypted-devices.nix
     ./sets/common.nix
     ./sets/mail.nix
     ./sets/laptop.nix
@@ -39,17 +39,35 @@
 
     "/" = {
       device = "/dev/mapper/cryptfs";
+      encrypted = {
+        enable = true;
+        blkDev = "/dev/sda3";
+        label = "cryptfs";
+      };
       fsType = "jfs";
     };
 
     "/home" = {
       device = "/dev/mapper/crypthome";
+      encrypted = {
+        enable = true;
+        blkDev = "/dev/sdb1";
+        label = "crypthome";
+        keyFile = "/root/.homekey";
+      };
       fsType = "jfs";
     };
   };
 
   swapDevices = [
-    { device = "/dev/mapper/cryptswap"; }
+    { device = "/dev/mapper/cryptswap";
+      encrypted = {
+        enable = true;
+        blkDev = "/dev/sda2";
+        label = "cryptswap";
+        keyFile = "/root/.swapkey";
+      };
+    }
   ];
 
   networking = {
