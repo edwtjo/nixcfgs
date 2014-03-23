@@ -2,7 +2,6 @@
 
 {
   require = [
-    ./q.nix
     ./hw/clevo-p150hm.nix
     ./hw/encrypted-root.nix
     ./sets/common.nix
@@ -19,7 +18,8 @@
     ./user/admin.nix
   ];
 
-  q.admin.remoteRootKeys = [ "edwtjo" ];
+  remote.admin.enable = true;
+  remote.admin.users = [ "edwtjo" ];
 
   nix.package = pkgs.nixUnstable;
 

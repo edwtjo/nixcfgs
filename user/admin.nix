@@ -2,28 +2,42 @@
 
 with pkgs.lib;
 
-{
+let
+  cfg = config.remote.admin;
 
-  ###### interface
+  remoteAdminOptions = {
 
-  options = {
-    q.admin.remoteRootKeys = mkOption {
-      default = [];
-      type = types.listOf types.string;
-      example = {
-        remoteRootKeys = [ "me" "myself" "andi" ];
+    admin = {
+      enable = mkOption {
+        default = false;
+        example = true;
+        description = "Enable support for remote admin.";
       };
-      description = ''
-        These users has remote root ssh, implies ssh service and that they
-        have known SSH public keys.
-        !!NOTE THE INSANE SECURITY RISK THIS IMPOSES!!
-      '';
+
+      users = mkOption {
+        default = [];
+        type = types.listOf types.string;
+        example = {
+          remoteRootKeys = [ "me" "myself" "andi" ];
+        };
+        description = ''
+          These users has remote root ssh, implies ssh service and that they
+          have known SSH public keys.
+          !!NOTE THE INSANE SECURITY RISK THIS IMPOSES!!
+          '';
+      };
+    };
+  };
+in
+
+{
+  options = {
+    remote = mkOption {
+      options = [ remoteAdminOptions ];
     };
   };
 
-  ###### implementation
-
-  config = {
+  config = mkIf cfg.enable {
 
     services.openssh = {
       enable = true;
@@ -31,9 +45,12 @@ with pkgs.lib;
       passwordAuthentication = false;
     };
 
-    users.extraUsers.root.openssh.authorizedKeys.keyFiles =
-      concatMap (name: config.users.extraUsers.${name}.openssh.authorizedKeys.keys)
-        config.q.admin.remoteRootKeys;
+    users.extraUsers.root.openssh.authorizedKeys.keyFiles = let
+      isIn = needle: haystack: filter (p: p == needle) haystack != [];
+      usersWithAdminKeys = attrValues (flip filterAttrs config.users.extraUsers (name: user:
+        (length user.openssh.authorizedKeys.keys != 0) && (isIn user.name config.remote.admin.users)
+      ));
+      in
+      concatMap (usr: usr.openssh.authorizedKeys.keys) usersWithAdminKeys;
   };
-
 }
