@@ -18,13 +18,15 @@
     ./user/admin.nix
   ];
 
+  nixpkgs.config.allowUnfree = true; # Hallowed be thy name
+
   remote.admin.enable = true;
   remote.admin.users = [ "edwtjo" ];
 
   nix.package = pkgs.nixUnstable;
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_3_11;
+    kernelPackages = pkgs.linuxPackages_3_12;
     loader.grub = {
       enable = true;
       device = "/dev/sda";
@@ -73,6 +75,7 @@
   networking = {
     hostName = "tempest";
     interfaceMonitor.enable = true;
+    firewall.enable = false;
   };
 
   services = {

@@ -34,5 +34,5 @@
     maxJobs = 8;
   };
 
-  hardware.opengl.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
 }
