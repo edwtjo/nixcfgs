@@ -129,4 +129,6 @@
     pulseaudio.enable = false;
     sane.enable = false;
   };
+
+  programs.ssh.startAgent = true;
 }

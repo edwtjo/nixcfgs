@@ -105,7 +105,6 @@
 
       displayManager.kdm.enable = true;
 
-      startOpenSSHAgent = true;
     };
   };
 
