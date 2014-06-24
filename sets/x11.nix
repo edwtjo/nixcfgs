@@ -126,7 +126,6 @@
     extraFonts = with pkgs; [
        andagii
        anonymousPro
-       arkpandora_ttf
        bakoma_ttf
        cantarell_fonts
        corefonts
