@@ -4,7 +4,7 @@
     androidsdk_4_1
     ant
     maven
-    ideas.idea_community_1311
+    ideas.idea_community_1313
     openjdk
   ];
 }
