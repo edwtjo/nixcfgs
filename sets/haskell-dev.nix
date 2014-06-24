@@ -2,10 +2,13 @@
 {
   environment.systemPackages = with pkgs; [
   ( with haskellPackages; [
+    Agda
+    AgdaStdlib
     cabalInstall
-    cabalDev
+#    cabalDev
     ghc
     ghcCore
+    ghcMod
     haddock
     haskellPlatform
     hasktags
