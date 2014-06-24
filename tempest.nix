@@ -3,7 +3,6 @@
 {
   require = [
     ./hw/clevo-p150hm.nix
-    ./hw/encrypted-devices.nix
     ./sets/common.nix
     ./sets/mail.nix
     ./sets/laptop.nix
@@ -11,7 +10,6 @@
     ./sets/virtualization.nix
     ./sets/music.nix
     ./sets/x11.nix
-    ./sets/games.nix
     ./sets/math.nix
     ./sets/developer.nix
     ./user/edwtjo.nix
