@@ -24,6 +24,7 @@
     flex
     fortune
     fuse
+    fuse_exfat
     gnumake
     gnupg
     gpm
