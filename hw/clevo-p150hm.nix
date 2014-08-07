@@ -3,10 +3,9 @@
 {
   boot = {
     initrd = {
-      supportedFilesystems = [ "jfs" "ext2" ];
+      supportedFilesystems = [ "jfs" "ext2" "btrfs" ];
       extraUtilsCommands =
       ''
-        # jfs on rootfs means we must have fsck
         cp -v ${pkgs.jfsutils}/sbin/fsck.jfs $out/bin
       '';
       kernelModules = [ "ehci_hcd" "ahci" "xhci_hcd" "shpchp" "usb_storage" "jfs" ];
@@ -20,6 +19,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    btrfsProgs
     jfsutils
     jfsrec
     firmwareLinuxNonfree

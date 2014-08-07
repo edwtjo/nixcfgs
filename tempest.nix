@@ -24,7 +24,7 @@
   nix.package = pkgs.nixUnstable;
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_3_14;
+    kernelPackages = pkgs.linuxPackages_3_15;
     loader.grub = {
       enable = true;
       device = "/dev/sda";
@@ -44,7 +44,7 @@
         blkDev = "/dev/sda3";
         label = "cryptfs";
       };
-      fsType = "jfs";
+      fsType = "btrfs";
     };
 
     "/home" = {
