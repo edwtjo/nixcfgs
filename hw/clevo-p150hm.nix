@@ -1,10 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  require = [
-    <nixos/modules/installer/scan/not-detected.nix>
-  ];
-
   boot = {
     initrd = {
       supportedFilesystems = [ "jfs" "ext2" ];
