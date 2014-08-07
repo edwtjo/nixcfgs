@@ -34,5 +34,17 @@
     maxJobs = 8;
   };
 
-  hardware.opengl.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  systemd.services."screen-mirror-on-dvi" = {
+    description = "mirror screens to DVI on X11 startup.";
+    after = [ "display-manager.service" ];
+    serviceConfig = {
+      ExecStart = ''
+        ${pkgs.xlibs.xrandr} --output LVDS-0 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-0 --off --output DVI-I-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DVI-I-0 --off --output HDMI-0 --off
+      '';
+    };
+  };
+
+
 }
