@@ -32,6 +32,15 @@
     };
   };
 
+  nixpkgs.config.packageOverrides = pkgs:
+  { linux_3_15 = pkgs.linux_3_15.override {
+      extraConfig =
+        ''
+          PCI_DEBUG y
+        '';
+    };
+  };
+
   fileSystems = {
     "/boot" = {
       device = "/dev/sda1";
