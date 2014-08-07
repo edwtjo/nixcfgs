@@ -87,6 +87,26 @@
   };
 
   services = {
-    openvpn.enable = true;
+    openvpn.servers = {
+      hypercube = {
+        config = ''
+          client
+          proto udp
+          dev tap
+          remote nexus.cube2.se 2194
+          comp-lzo
+          verb 3
+          cipher  AES-256-CBC
+          cert 	/root/.vpn/hypercube/tempest.crt
+          key 	/root/.vpn/hypercube/tempest.key
+          ca 	/root/.vpn/hypercube/ca.crt
+          dh	/root/.vpn/hypercube/dh4096.pem
+          persist-key
+          persist-tun
+          status /root/.vpn/hypercube/openvpn-status.log
+	      '';
+	      autoStart = false;
+      };
+    };
   };
 }
