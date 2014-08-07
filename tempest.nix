@@ -12,6 +12,7 @@
     ./sets/x11.nix
     ./sets/math.nix
     ./sets/developer.nix
+    ./pkgs/nixin.nix
     ./user/edwtjo.nix
     ./user/admin.nix
   ];
