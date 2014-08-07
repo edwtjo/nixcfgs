@@ -123,7 +123,7 @@
   fonts = {
     enableFontDir = true;
     enableGhostscriptFonts = true;
-    extraFonts = with pkgs; [
+    fonts = with pkgs; [
        andagii
        anonymousPro
        bakoma_ttf
@@ -145,7 +145,6 @@
        terminus_font
        ttf_bitstream_vera
        ucsFonts
-       unifont
        vistafonts
        wqy_zenhei
     ];
