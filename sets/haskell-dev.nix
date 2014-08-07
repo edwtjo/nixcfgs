@@ -2,8 +2,8 @@
 {
   environment.systemPackages = with pkgs; [
   ( with haskellPackages; [
-    Agda
-    AgdaStdlib
+#    Agda
+#    AgdaStdlib
     cabalInstall
 #    cabalDev
     ghc
