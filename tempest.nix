@@ -3,6 +3,7 @@
 {
   require = [
     ./hw/clevo-p150hm.nix
+    ./pkgs
     ./sets/common.nix
     ./sets/mail.nix
     ./sets/laptop.nix
@@ -12,7 +13,6 @@
     ./sets/x11.nix
     ./sets/math.nix
     ./sets/developer.nix
-    ./pkgs/nixin.nix
     ./user/edwtjo.nix
     ./user/admin.nix
   ];
@@ -109,4 +109,20 @@
       };
     };
   };
+
+  environment.variables.EDWTJOS_SECRET = "psilocybin";
+
+  systemd.services.edwtjo-mailsync = {
+     description = "Synchronizes and indexes my maildirs";
+     wantedBy = [ "multi-user.target" ];
+     serviceConfig = {
+       User = "edwtjo";
+       Type = "oneshot";
+       Restart = "always";
+       RestartSec = "300";
+       ExecStart = ''
+         ${pkgs.offlineimap}/bin/offlineimap -q
+       '';
+     };
+   };
 }

@@ -52,6 +52,7 @@
     mercurial
     monotone
     mosh
+    nixin
     nmap
     openjdk
     openssh
@@ -95,6 +96,8 @@
   '';
 
   time.timeZone = "Europe/Stockholm";
+
+  boot.cleanTmpDir = true;
 
   boot.loader.grub = {
     enable = true;
