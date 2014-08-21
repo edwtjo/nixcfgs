@@ -2,6 +2,8 @@
 {
   require = [
     ./hw/asrock-e350m1-fusion.nix
+    ./pkgs
+    ./sets/svenglish.nix
     ./user/admin.nix
     ./user/edwtjo.nix
     ./user/htpc.nix
@@ -9,12 +11,6 @@
 
   remote.admin.enable = true;
   remote.admin.users = [ "edwtjo" ];
-
-  i18n = {
-    consoleFont = "lat9w-16";
-    consoleKeyMap = "sv-latin1";
-    defaultLocale = "en_CA.UTF-8";
-  };
 
   fileSystems."/" =
     { device = "/dev/mapper/cryptfs";
@@ -58,7 +54,8 @@
     glxinfo
     links2
     nfsUtils
-    ( import ./pkgs/nixin.nix )
+    #( import ./pkgs/nixin.nix )
+    nixin
     wine
     xbmc
     wget
@@ -74,7 +71,8 @@
     openvpn
     sudo
     #xboxdrv
-    ( import ./pkgs/xbmc-launchers.nix )
+    #( import ./pkgs/xbmc-launchers.nix )
+    xbmc-launchers
     fceux
     zsnes
   ];
@@ -142,12 +140,6 @@
     hostName = "prism";
     firewall.enable = false;
     interfaceMonitor.enable = true;
-    localCommands = ''
-      sleep 10
-      systemctl restart mnt-nfs-movies.mount
-      systemctl restart mnt-nfs-series.mount
-      systemctl restart mnt-nfs-emu.mount
-    '';
   };
 
   nixpkgs.config = {
