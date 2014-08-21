@@ -1,4 +1,4 @@
-with import <nixpkgs> {};
+{ stdenv, fetchgit }:
 
 stdenv.mkDerivation rec {
   name = "nixin-${version}";
@@ -19,4 +19,3 @@ stdenv.mkDerivation rec {
     license = "GPL-3";
   };
 }
-

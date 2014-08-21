@@ -1,36 +1,36 @@
-with import <nixpkgs> {};
-
+{ stdenv, pkgs, fceux, zsnes }:
 let
 
   xbmcFceux = ''
-#!${pkgs.stdenv.shell}
+#!${stdenv.shell}
 game=`printf "%q" "$@"`
 echo "`date +%Y%m%d-%H:%M:%S` <$game>"
 export SDL_DSP_PATH=/dev/snd/controlC1
 export SDL_AUDIODRIVER=alsa
-${pkgs.fceux}/bin/fceux \
+${fceux}/bin/fceux \
   --autoscale 1 \
   --keepratio 1 \
   --pal 0 \
   --fullscreen 1 \
   --newppu 1 \
-  --opengl 1 \
+  --opengl 0 \
   --sound 1 \
   --soundq 2 \
   --noframe 1 \
-  --nogui \
-  "$@"
+  --4buttonexit 1 \
+  "$@" > xbmc-fceux.log 2> xbmc-fceux.err.log
 '';
   xbmcFceuxSh = pkgs.writeScript "xbmc-fceux" xbmcFceux;
 
   xbmcZsnes = ''
-#!${pkgs.stdenv.shell}
+#!${stdenv.shell}
+game=`printf "%q" "$@"`
+echo "`date +%Y%m%d-%H:%M:%S` <$game>"
 export SDL_DSP_PATH=/dev/snd/controlC1
 export SDL_AUDIODRIVER=alsa
-${pkgs.zsnes}/bin/zsnes \
+exec ${zsnes}/bin/zsnes \
         -y \
         -j \
-        -ad alsa \
         -1 1 \
         -2 1 \
         -s \
@@ -39,9 +39,7 @@ ${pkgs.zsnes}/bin/zsnes \
         "$@"
 '';
   xbmcZsnesSh = pkgs.writeScript "xbmc-zsnes" xbmcZsnes;
-
-in 
-
+in
 stdenv.mkDerivation rec {
   name = "xbmc-launchers-${version}";
   version = "0.1";
