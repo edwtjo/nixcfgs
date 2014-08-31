@@ -54,9 +54,9 @@
     glxinfo
     links2
     nfsUtils
-    #( import ./pkgs/nixin.nix )
     nixin
     wine
+    emulationstation
     xbmc
     wget
     git
@@ -70,8 +70,7 @@
     curl
     openvpn
     sudo
-    #xboxdrv
-    #( import ./pkgs/xbmc-launchers.nix )
+    xboxdrv
     xbmc-launchers
     fceux
     zsnes
@@ -139,7 +138,8 @@
   networking = {
     hostName = "prism";
     firewall.enable = false;
-    interfaceMonitor.enable = true;
+    #interfaceMonitor.enable = true;
+    useDHCP = true;
   };
 
   nixpkgs.config = {
