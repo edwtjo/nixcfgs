@@ -138,7 +138,6 @@
   networking = {
     hostName = "prism";
     firewall.enable = false;
-    #interfaceMonitor.enable = true;
     useDHCP = true;
   };
 

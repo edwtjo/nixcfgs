@@ -30,7 +30,7 @@
       fsType = "ext2";
     };
 
-  swapDevices =[ 
+  swapDevices =[
     { device = "/dev/sda2"; }
   ];
 
@@ -51,7 +51,7 @@
     gimp
     glxinfo
     links2
-    gqview  
+    gqview
     nixin
     rdesktop
     wine
@@ -70,7 +70,7 @@
     wpa_supplicant_gui
     p7zip
     sshfsFuse
-    gnupg 
+    gnupg
     curl
     openvpn
     sudo
@@ -93,7 +93,7 @@
       layout = "se";
       xkbModel = "pc105";
       synaptics = {
-        enable = true; 
+        enable = true;
         twoFingerScroll = true;
       };
     };
@@ -135,7 +135,7 @@
   networking = {
     hostName = "bismarck";
     firewall.enable = false;
-    interfaceMonitor.enable = true;
+    useDHCP = true;
     enableB43Firmware = true;
     wireless = {
       enable = true;
@@ -143,13 +143,13 @@
       userControlled.enable = true;
     };
   };
- 
+
   nixpkgs.config = {
     allowUnfree = true;
     firefox = {
       enableAdobeFlash = true;
       enableDjvu = true;
-      enableFriBIDPlugin = true; 
+      enableFriBIDPlugin = true;
     };
     packageOverrides = pkgs: {
       nixin = pkgs.stdenv.mkDerivation rec {

@@ -37,7 +37,7 @@
 
   networking = {
     hostName = "executor";
-    interfaceMonitor.enable = true;
+    useDHCP = true;
     defaultGateway = "192.168.0.1";
     nameservers = [ "150.227.50.1" ];
     interfaces = {

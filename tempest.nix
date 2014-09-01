@@ -82,7 +82,7 @@
 
   networking = {
     hostName = "tempest";
-    interfaceMonitor.enable = true;
+    useDHCP = true;
     firewall.enable = false;
   };
 
