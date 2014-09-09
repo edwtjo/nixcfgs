@@ -1,4 +1,4 @@
-{config, pkgs, ...}:
+{ config, pkgs, ... }:
 
 {
   require = [
@@ -109,8 +109,6 @@
       };
     };
   };
-
-  environment.variables.EDWTJOS_SECRET = "psilocybin";
 
   systemd.services.edwtjo-mailsync = {
      description = "Synchronizes and indexes my maildirs";
