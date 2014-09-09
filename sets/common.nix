@@ -1,6 +1,5 @@
-{config, pkgs, ...}:
+{ config, pkgs, ... }:
 {
-
   nix = {
     useChroot = true;
     gc.automatic = true;
@@ -97,15 +96,16 @@
 
   time.timeZone = "Europe/Stockholm";
 
-  boot.cleanTmpDir = true;
-
-  boot.loader.grub = {
-    enable = true;
-    version = 2;
-    memtest86.enable = true;
+  boot = {
+    cleanTmpDir = true;
+    loader.grub = {
+      enable = true;
+      version = 2;
+      memtest86.enable = true;
+    };
   };
 
-  networking.interfaceMonitor.enable = true;
+  networking.useDHCP = true;
 
   i18n = {
     consoleFont = "lat9w-16";
