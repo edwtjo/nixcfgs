@@ -51,28 +51,29 @@
 
   environment.systemPackages = with pkgs; [
     acpi
+    curl
+    emulationstation
+    fceux
+    git
     glxinfo
+    gnupg
     links2
+    lshw
     nfsUtils
     nixin
-    wine
-    emulationstation
-    xbmc
-    wget
-    git
-    lshw
-    vim
-    xsel
-    screen
-    p7zip
-    sshfsFuse
-    gnupg
-    curl
     openvpn
+    p7zip
+    retroarch
+    screen
+    sshfsFuse
     sudo
-    xboxdrv
+    wine
+    vim
+    wget
+    xbmc
     xbmc-launchers
-    fceux
+    xboxdrv
+    xsel
     zsnes
   ];
 
@@ -143,6 +144,11 @@
 
   nixpkgs.config = {
     allowUnfree = true;
+    retroarch = {
+      enableFceumm = true;
+      enableSnes9xNext = true;
+      enableMupen64Plus = true;
+    };
   };
 
   fonts.fonts = with pkgs; [
