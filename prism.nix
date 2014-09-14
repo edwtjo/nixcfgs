@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  require = [
+  imports = [
     ./hw/asrock-e350m1-fusion.nix
     ./pkgs
     ./sets/svenglish.nix

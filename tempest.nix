@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  require = [
+
+  imports = [
     ./hw/clevo-p150hm.nix
     ./pkgs
     ./sets/common.nix
@@ -16,6 +17,7 @@
     ./user/edwtjo.nix
     ./user/admin.nix
   ];
+
 
   nixpkgs.config.allowUnfree = true; # Hallowed be thy name
 

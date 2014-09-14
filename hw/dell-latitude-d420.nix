@@ -1,7 +1,7 @@
 { config, pkgs, modulesPath, ... }:
 
 {
-  require = [
+  imports = [
     "${modulesPath}/profiles/base.nix"
     "${modulesPath}/installer/scan/not-detected.nix"
   ];

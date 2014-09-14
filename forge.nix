@@ -1,7 +1,7 @@
 {config, pkgs, ...}:
 
 {
-  require = [
+  imports = [
     ./hw/dell-latitude-d420.nix
     ./hw/encrypted-root.nix
     ./sets/common.nix

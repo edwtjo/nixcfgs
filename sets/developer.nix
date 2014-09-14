@@ -1,6 +1,6 @@
 {config, pkgs, ...}:
 {
-  require = [
+  imports = [
     ./embedded-dev.nix
     ./java-dev.nix
     ./haskell-dev.nix

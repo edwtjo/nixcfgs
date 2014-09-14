@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  require = [
+  imports = [
     ./hw/acer-travelmate-5510.nix
     ./user/admin.nix
     ./user/edwtjo.nix

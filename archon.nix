@@ -1,7 +1,7 @@
 {config, pkgs, ...}:
 
 {
-  require = [
+  imports = [
     ./hw/kvm.nix
     ./sets/common.nix
     ./sets/laptop.nix
