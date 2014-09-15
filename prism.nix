@@ -53,7 +53,6 @@
     acpi
     curl
     emulationstation
-    fceux
     git
     glxinfo
     gnupg
@@ -72,7 +71,6 @@
     wget
     xbmc
     xbmc-launchers
-    xboxdrv
     xsel
     zsnes
   ];
@@ -145,9 +143,21 @@
   nixpkgs.config = {
     allowUnfree = true;
     retroarch = {
+      enable4do = true;
+      enableBsnesMercury = true;
+      enableDesmume = true;
+      enableFBA = true;
       enableFceumm = true;
-      enableSnes9xNext = true;
+      enableGambatte = true;
+      enableGenesisPlusGX = true;
       enableMupen64Plus = true;
+      enablePicodrive = true;
+      enablePrboom = true;
+      enablePPSSPP = true;
+      enableScummVM = true;
+      enableSnes9xNext = true;
+      enableStella = true;
+      enableVbaNext = true;
     };
   };
 
