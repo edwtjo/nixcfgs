@@ -1,56 +1,46 @@
-{ stdenv, pkgs, fceux, zsnes }:
+{ stdenv, pkgs, cores }:
+
+assert cores != [];
+
+with pkgs.lib;
+
 let
 
-  xbmcFceux = ''
-#!${stdenv.shell}
-game=`printf "%q" "$@"`
-echo "`date +%Y%m%d-%H:%M:%S` <$game>"
-export SDL_DSP_PATH=/dev/snd/controlC1
-export SDL_AUDIODRIVER=alsa
-${fceux}/bin/fceux \
-  --autoscale 1 \
-  --keepratio 1 \
-  --pal 0 \
-  --fullscreen 1 \
-  --newppu 1 \
-  --opengl 0 \
-  --sound 1 \
-  --soundq 2 \
-  --noframe 1 \
-  --4buttonexit 1 \
-  "$@" > xbmc-fceux.log 2> xbmc-fceux.err.log
-'';
-  xbmcFceuxSh = pkgs.writeScript "xbmc-fceux" xbmcFceux;
+  init = list: drop 1 list;
+  tails = list: take (length list - 1) list;
 
-  xbmcZsnes = ''
-#!${stdenv.shell}
-game=`printf "%q" "$@"`
-echo "`date +%Y%m%d-%H:%M:%S` <$game>"
-export SDL_DSP_PATH=/dev/snd/controlC1
-export SDL_AUDIODRIVER=alsa
-exec ${zsnes}/bin/zsnes \
-        -y \
-        -j \
-        -1 1 \
-        -2 1 \
-        -s \
-        -v 4 \
-        -m \
-        "$@"
-'';
-  xbmcZsnesSh = pkgs.writeScript "xbmc-zsnes" xbmcZsnes;
+  script = exec: ''
+    #!${stdenv.shell}
+    pkill -SIGSTOP xbmc
+    ${exec} $@
+    pkill -SIGCONT xbmc
+  '';
+  scriptSh = exec: pkgs.writeScript ("xbmc-"+exec.name) (script exec.path);
+  execs = zipListsWith
+            (n: p: { name = n; path = p.out+"/bin/retroarch-"+n; })
+            (map (drv: concatStringsSep "-" ((init(tails(splitString "-" drv.name))))) cores)
+            (cores);
+
 in
+
 stdenv.mkDerivation rec {
   name = "xbmc-launchers-${version}";
   version = "0.1";
+
   dontBuild = true;
-  unpackPhase = "mkdir -p $out/bin";
-  installPhase = ''
-    ln -s ${xbmcZsnesSh} $out/bin/xbmc-zsnes
-    ln -s ${xbmcFceuxSh} $out/bin/xbmc-fceux
+
+  buildCommand = ''
+    mkdir -p $out/bin
+    ${stdenv.lib.concatMapStrings (exec: "ln -s ${scriptSh exec} $out/bin/xbmc-${exec.name};") execs}
   '';
+
   meta = {
-    description = "XBMC game launchers";
+    description = "XBMC retroarch launchers";
+    longDescription = ''
+      These retroarch launchers are intended to be used with
+      angelfires advanced launcher for XBMC since device input is
+      caught by both XBMC and the retroarch process.
+    '';
     license = "GPL-3";
   };
 }
