@@ -141,7 +141,6 @@
        mph_2b_damase
        oldstandard
        theano
-       tempora_lgc
        terminus_font
        ttf_bitstream_vera
        ucsFonts
