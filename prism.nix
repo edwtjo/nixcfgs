@@ -129,7 +129,7 @@
   };
 
   powerManagement.enable = true;
-  hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = true;
 
   time.timeZone = "Europe/Stockholm";
 
