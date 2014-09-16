@@ -1,10 +1,10 @@
 {config, pkgs, ...}:
 {
   environment.systemPackages = with pkgs; [
-    androidsdk_4_1
+    androidsdk_4_4
     ant
     maven
-    ideas.idea-community
+    idea.idea-community
     openjdk
   ];
 }
