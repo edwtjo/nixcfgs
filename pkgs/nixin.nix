@@ -5,8 +5,8 @@ stdenv.mkDerivation rec {
   version = "0.1";
   src = fetchgit {
     url = "https://github.com/edwtjo/nixin";
-    rev = "d14683f37046beddb4ae898c4da1cbcada1b1d47";
-    sha256 = "bfd3bcfd06f37acea74d10ad5d38b327940c4b3b7f0f15f66e7501c0d2f26602";
+    rev = "aea505c8baccb86b079a32ef4962966d02b85149";
+    sha256 = "0p9g9zbn6cdw6mdyhi5cxws7jkli457fidyknnvrjnmkdp03y4q8";
   };
   installPhase = ''
     mkdir -p $out/bin
