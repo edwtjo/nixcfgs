@@ -6,19 +6,17 @@ with pkgs.lib;
 
 let
 
-  init = list: drop 1 list;
-  tails = list: take (length list - 1) list;
+  init = list: take (length list - 1) list;
 
   script = exec: ''
     #!${stdenv.shell}
-    pkill -SIGSTOP xbmc
-    ${exec} $@
-    pkill -SIGCONT xbmc
+    nohup sh -c "sleep 2 && pkill -SIGSTOP xbmc" &
+    nohup sh -c "${exec} '$@';pkill -SIGCONT xbmc"
   '';
   scriptSh = exec: pkgs.writeScript ("xbmc-"+exec.name) (script exec.path);
   execs = zipListsWith
-            (n: p: { name = n; path = p.out+"/bin/retroarch-"+n; })
-            (map (drv: concatStringsSep "-" ((init(tails(splitString "-" drv.name))))) cores)
+            (n: p: { name = n; path = p+"/bin/retroarch-"+n; })
+            (map (drv: concatStringsSep "-" ((init(tail(splitString "-" drv.name))))) cores)
             (cores);
 
 in
