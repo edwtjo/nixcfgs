@@ -10,8 +10,8 @@ let
 
   script = exec: ''
     #!${stdenv.shell}
-    nohup sh -c "sleep 2 && pkill -SIGSTOP xbmc" &
-    nohup sh -c "${exec} '$@';pkill -SIGCONT xbmc"
+    nohup sh -c "sleep 1 && pkill -SIGSTOP xbmc" &
+    nohup sh -c "${exec} '$@' -f;pkill -SIGCONT xbmc"
   '';
   scriptSh = exec: pkgs.writeScript ("xbmc-"+exec.name) (script exec.path);
   execs = zipListsWith
@@ -23,7 +23,7 @@ in
 
 stdenv.mkDerivation rec {
   name = "xbmc-launchers-${version}";
-  version = "0.1";
+  version = "0.2";
 
   dontBuild = true;
 
