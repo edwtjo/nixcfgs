@@ -70,7 +70,7 @@
     vim
     wget
     xbmc
-    xbmc-launchers
+    xbmc-retroarch-advanced-launchers
     xsel
     zsnes
   ];
@@ -158,6 +158,9 @@
       enableSnes9xNext = true;
       enableStella = true;
       enableVbaNext = true;
+    };
+    xbmc = {
+      enableAdvancedLauncher = true;
     };
   };
 
