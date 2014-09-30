@@ -1,10 +1,12 @@
 {config, pkgs, ...}:
 {
   environment.systemPackages = with pkgs; [
+    ihaskell
   ( with haskellPackages; [
 #    Agda
 #    AgdaStdlib
     cabalInstall
+    cabal2nix
 #    cabalDev
     ghc
     ghcCore
@@ -15,6 +17,7 @@
     hlint
     hoogle
     stylishHaskell
+    ihaskell
   ])
   ];
 }
