@@ -9,6 +9,7 @@
     abook
     bazaar
     bc
+    cacert
     curl
     devicemapper
     dict
