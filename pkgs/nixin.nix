@@ -2,11 +2,11 @@
 
 stdenv.mkDerivation rec {
   name = "nixin-${version}";
-  version = "0.2.1";
+  version = "0.2.2";
   src = fetchgit {
     url = "https://github.com/edwtjo/nixin";
-    rev = "694f00402fc2a814b89e92d7bd1c7e0a05ab4075";
-    sha256 = "01zwbavn3gzjcqxgmgz0kkxs87c03dw4sx1ab021cyp0yhg4nz9i";
+    rev = "f51afc8abf9510ea49effb02e2edaea8dfc70108";
+    sha256 = "19fj6zx15n7lpx7scq3yrmjmx1z6c8cdhh99z791rx2z5iqvky72";
   };
   installPhase = ''
     mkdir -p $out/bin
