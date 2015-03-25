@@ -15,11 +15,15 @@
     clang
     cmake
     darcs
+    subversion
+    monotone
+    mercurial
     gcc
     gdb
     (with gitAndTools; [
       gitFull
       topGit
     ])
+    pythonPackages.autopep8
   ];
 }
