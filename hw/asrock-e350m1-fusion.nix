@@ -4,9 +4,8 @@
 
 {
   boot.vesa = true;
-  boot.kernelPackages = pkgs.linuxPackages_3_15;
   boot.initrd.availableKernelModules = [ "ahci" "ohci_pci" "ehci_pci" "pata_atiixp" "usb_storage" "usbhid" "btrfs" ];
-  boot.kernelModules = [ "kvm-amd" "btrfs" ];
+  boot.kernelModules = [ "kvm-amd" "btrfs" "squashfs" "unionfs" ];
   boot.extraModulePackages = [ pkgs.btrfsProgs ];
   boot.kernelParams = [ "fbcon=map:1" "video=vesafb:off" "console=ttyS0,115200n8" ];
   hardware.enableAllFirmware = true;
