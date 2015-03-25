@@ -40,6 +40,12 @@
       options = "ro";
     };
 
+  fileSystems."/var/db/emu" =
+    { device = "${pkgs.unionfs-fuse}/bin/unionfs#/home/htpc/emulator-saves=rw:/mnt/nfs/emu=ro";
+      fsType = "fuse";
+      options = "noauto,rw,uid=${toString config.users.extraUsers.htpc.uid},gid=${toString config.users.extraGroups.htpc.gid},use_ino,cow,allow_other";
+    };
+
   swapDevices =[
     { device = "/dev/sda4"; }
   ];
@@ -68,9 +74,10 @@
     sudo
     wine
     vim
+    unionfs-fuse
     wget
-    xbmc
-    xbmc-retroarch-advanced-launchers
+    kodi
+    kodi-retroarch-advanced-launchers
     xsel
     zsnes
   ];
@@ -89,7 +96,7 @@
         autoLogin = true;
       };
       desktopManager = {
-        xbmc.enable = true;
+        kodi.enable = true;
       };
       layout = "se";
       xkbModel = "pc105";
@@ -151,16 +158,22 @@
       enableGambatte = true;
       enableGenesisPlusGX = true;
       enableMupen64Plus = true;
+      enableNestopia = true;
       enablePicodrive = true;
       enablePrboom = true;
       enablePPSSPP = true;
+      enableQuickNES = true;
       enableScummVM = true;
+      enableSnes9x = true;
       enableSnes9xNext = true;
       enableStella = true;
+      enableVbaM = true;
       enableVbaNext = true;
     };
-    xbmc = {
+    kodi = {
       enableAdvancedLauncher = true;
+      enableSVTPlay = true;
+      enableGenesis = true;
     };
   };
 
