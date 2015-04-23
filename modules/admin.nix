@@ -3,7 +3,7 @@
 with lib;
 
 let
-  cfg = config.remote.admin;
+  cfg = config.tjonix.admin;
 
   remoteAdminOptions = {
 
@@ -31,11 +31,7 @@ let
 in
 
 {
-  options = {
-    remote = mkOption {
-      options = [ remoteAdminOptions ];
-    };
-  };
+  options.tjonix = mkOption { options = [ remoteAdminOptions ]; };
 
   config = mkIf cfg.enable {
 
@@ -48,7 +44,7 @@ in
     users.extraUsers.root.openssh.authorizedKeys.keyFiles = let
       isIn = needle: haystack: filter (p: p == needle) haystack != [];
       usersWithAdminKeys = attrValues (flip filterAttrs config.users.extraUsers (name: user:
-        (length user.openssh.authorizedKeys.keys != 0) && (isIn user.name config.remote.admin.users)
+        (length user.openssh.authorizedKeys.keys != 0) && (isIn user.name config.tjonix.admin.users)
       ));
       in
       concatMap (usr: usr.openssh.authorizedKeys.keys) usersWithAdminKeys;
