@@ -112,17 +112,22 @@
     };
   };
 
-  systemd.services.edwtjo-mailsync = {
-     description = "Synchronizes and indexes my maildirs";
-     wantedBy = [ "multi-user.target" ];
-     serviceConfig = {
-       User = "edwtjo";
-       Type = "oneshot";
-       Restart = "always";
-       RestartSec = "300";
-       ExecStart = ''
-         ${pkgs.offlineimap}/bin/offlineimap -q
-       '';
-     };
-   };
+  environment.etc."gtk-3.0/settings.ini".text = ''
+    [Settings]
+    gtk-theme-name=Adwaita
+    gtk-icon-theme-name=gnome
+    gtk-font-name=Liberation Sans 15
+    gtk-cursor-theme-name=Adwaita
+    gtk-cursor-theme-size=0
+    gtk-toolbar-style=GTK_TOOLBAR_BOTH
+    gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
+    gtk-button-images=1
+    gtk-menu-images=1
+    gtk-enable-event-sounds=1
+    gtk-enable-input-feedback-sounds=1
+    gtk-xft-antialias=1
+    gtk-xft-hinting=1
+    gtk-xft-hintstyle=hintslight
+    gtk-xft-rgba=rgb
+  '';
 }
