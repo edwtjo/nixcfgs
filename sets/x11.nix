@@ -1,7 +1,7 @@
 { config, pkgs, ...}:
 {
   environment.systemPackages = with pkgs; [
-    bitcoin
+    (with altcoins; [ bitcoin dogecoin ])
     cinepaint
     conky
     darktable
@@ -18,31 +18,25 @@
     gqview
     gtk
     gvfs
-    ( with haskellPackages; [
-    (ghcWithPackagesOld (self : with self;
-      [xmobar xmonad xmonadContrib xmonadExtras
-       haskellPlatform pipes criterion ]))
-    ])
     hicolor_icon_theme
     inkscape
     imagemagickBig
     keepassx
     libreoffice
-    mplayer
+    (with sweethome3d; [ application textures-editor furniture-editor ])
     mupdf
     polkit_gnome
     rdesktop
     rxvt_unicode
+    rxvt_unicode.terminfo
     scrot
     shared_mime_info
     stalonetray
-    vlc
     vimHugeX
     wine
     transmission_gtk
     transmission_remote_gtk
     x2vnc
-    xbmc
     ( with xfce; [
     exo
     gvfs
@@ -63,7 +57,6 @@
     xorg.xauth
     xournal
     xsel
-    zathura
   ];
 
   environment.shellInit = ''
@@ -81,7 +74,6 @@
 
   services = {
     avahi.enable = true;
-
     dbus = {
       packages = with pkgs; [ gnome.GConf ];
     };
