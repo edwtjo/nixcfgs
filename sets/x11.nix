@@ -93,7 +93,11 @@
       xkbModel = "pc105";
 
       windowManager = {
-        xmonad.enable = true;
+        xmonad = {
+          enable = true;
+          haskellPackages = pkgs.haskell-ng.packages.ghc7101;
+          enableContribAndExtras = true;
+        };
         default = "xmonad";
       };
 
