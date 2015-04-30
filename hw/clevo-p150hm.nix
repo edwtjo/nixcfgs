@@ -11,7 +11,7 @@
       kernelModules = [ "ehci_hcd" "ahci" "xhci_hcd" "shpchp" "usb_storage" "jfs" ];
     };
     kernelModules = [ "kvm-intel" "fuse" "mmc_core" ];
-    extraModulePackages = [ pkgs.btrfsProgs ];
+    extraModulePackages = with pkgs; [ jfsutils btrfsProgs ];
     postBootCommands = ''
       # enable SD card reader
       echo 1 > /sys/bus/pci/rescan
@@ -21,7 +21,6 @@
   environment.systemPackages = with pkgs; [
     btrfsProgs
     jfsutils
-    jfsrec
     firmwareLinuxNonfree
   ];
 
@@ -45,6 +44,4 @@
       '';
     };
   };
-
-
 }
