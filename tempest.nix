@@ -4,7 +4,10 @@
 
   imports = [
     ./hw/clevo-p150hm.nix
+
     ./pkgs
+    ./modules
+
     ./sets/common.nix
     ./sets/mail.nix
     ./sets/laptop.nix
@@ -12,34 +15,28 @@
     ./sets/virtualization.nix
     ./sets/music.nix
     ./sets/x11.nix
+    ./sets/media.nix
+    ./sets/games.nix
     ./sets/math.nix
     ./sets/developer.nix
     ./user/edwtjo.nix
-    ./user/admin.nix
+    ./user/htpc.nix
   ];
 
-
   nixpkgs.config.allowUnfree = true; # Hallowed be thy name
+  nixpkgs.config.allowBroken = true; # Gotta catch them all!
 
-  remote.admin.enable = true;
-  remote.admin.users = [ "edwtjo" ];
+  tjonix.admin.enable = true;
+  tjonix.admin.users = [ "edwtjo" ];
+  tjonix.infinality.enable = true;
 
   nix.package = pkgs.nixUnstable;
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_3_15;
+    kernelPackages = pkgs.linuxPackages_3_18;
     loader.grub = {
       enable = true;
       device = "/dev/sda";
-    };
-  };
-
-  nixpkgs.config.packageOverrides = pkgs:
-  { linux_3_15 = pkgs.linux_3_15.override {
-      extraConfig =
-        ''
-          PCI_DEBUG y
-        '';
     };
   };
 
