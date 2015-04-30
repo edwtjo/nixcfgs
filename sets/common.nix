@@ -139,10 +139,11 @@
     };
     printing = {
       enable = true;
-      drivers = with pkgs; [ hplip gutenprint cups_pdf_filter ];
+      drivers = with pkgs; [ gutenprint ];
     };
     fcron.enable = true;
     locate.enable = true;
+    uptimed.enable = true;
   };
 
   hardware = {
@@ -151,4 +152,18 @@
   };
 
   programs.ssh.startAgent = true;
+
+  systemd.services.edwtjo-synchome = {
+     description = "Synchronizes my HOME";
+     wantedBy = [ "multi-user.target" ];
+     after = [ "network.target" ];
+      serviceConfig = {
+       User = config.users.extraUsers.edwtjo.name;
+       Group = config.users.extraUsers.edwtjo.group;
+       Type = "simple";
+       Restart = "always";
+       RestartSec = "1200";
+       ExecStart = "${pkgs.slasktratten}/bin/synchome";
+     };
+   };
 }
