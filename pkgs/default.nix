@@ -3,6 +3,16 @@ with (import <nixpkgs> { inherit (builtins.currentSystem); }).pkgs;
 rec {
   nixpkgs.config.packageOverrides = self : with self; {
 
+    tjoNix = lib.overrideDerivation (nix) (attrs: {
+      name = "nix-1.9pre4100_4bbcfaf";
+
+      src = fetchurl {
+        url = "http://hydra.nixos.org/build/21565942/download/4/${name}.tar.xz";
+        sha256 = "1jcy0n8mi17k5vk89vammfh74lvsgnm4gjsk23cq1shspjnbbgxs";
+      };
+      patches = [];
+    });
+
     xfce = xfce // {
       libxfce4ui = lib.overrideDerivation (xfce.libxfce4ui) (attrs:  {
         postInstall = '' # don't you dare mess with my meta key
@@ -38,5 +48,13 @@ rec {
       enableX11 = false;
     };
 
+    jfsrec = import ./jfsrec.nix {
+      inherit (pkgs) stdenv fetchurl boost;
+    };
+
+    slasktratten = import ./slasktratten.nix {
+      inherit (pkgs) stdenv fetchurl writeText writeScriptBin coreutils jdk openssh;
+      unison = pkgs.unison_2483;
+    };
   };
 }
