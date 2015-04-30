@@ -3,6 +3,13 @@
   nix = {
     useChroot = true;
     gc.automatic = true;
+    daemonIONiceLevel = 7;
+    daemonNiceLevel = 19;
+    binaryCaches = [ "http://hydra.cryp.to" "http://cache.nixos.org" ];
+    extraOptions = ''
+      auto-optimise-store = true
+      binary-caches-parallel-connections = 1
+    '';
   };
 
   environment.systemPackages = with pkgs; [
