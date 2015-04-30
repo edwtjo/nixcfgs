@@ -12,7 +12,7 @@ rec {
     };
 
     nixin = import ./nixin.nix {
-      inherit (pkgs) stdenv fetchgit;
+      inherit (pkgs) stdenv fetchFromGitHub;
     };
 
     unison_22757 = import ./unison-2.27.57.nix {

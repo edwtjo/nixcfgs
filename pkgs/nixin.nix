@@ -1,12 +1,13 @@
-{ stdenv, fetchgit }:
+{ stdenv, fetchFromGitHub }:
 
 stdenv.mkDerivation rec {
   name = "nixin-${version}";
-  version = "0.2.2";
-  src = fetchgit {
-    url = "https://github.com/edwtjo/nixin";
-    rev = "f51afc8abf9510ea49effb02e2edaea8dfc70108";
-    sha256 = "19fj6zx15n7lpx7scq3yrmjmx1z6c8cdhh99z791rx2z5iqvky72";
+  version = "0.2.4";
+  src = fetchFromGitHub {
+    owner = "edwtjo";
+    repo = "nixin";
+    rev = "93b5cad63af32db156559dbcaf2970b6bb50d13d";
+    sha256 = "1gvycwbg5a999kn3n61ki173v5qxgzzi51gy2n6ppq9mcpbdipd9";
   };
   installPhase = ''
     mkdir -p $out/bin
