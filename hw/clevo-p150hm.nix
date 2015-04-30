@@ -39,11 +39,17 @@
 
   systemd.services."screen-mirror-on-dvi" = {
     description = "mirror screens to DVI on X11 startup.";
-    after = [ "display-manager.service" ];
+    after = [ "graphical.target" ];
     serviceConfig = {
-      ExecStart = ''
-        ${pkgs.xlibs.xrandr} --output LVDS-0 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-0 --off --output DVI-I-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DVI-I-0 --off --output HDMI-0 --off
-      '';
+      ExecStart =
+      let
+        mirror-screens = pkgs.writeScriptBin "mirror-screens" ''
+          #!/bin/sh
+          ${pkgs.xlibs.xrandr} --output LVDS-0 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-0 --off --output DVI-I-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DVI-I-0 --off --output HDMI-0 --off
+        '';
+
+      in
+        "${mirror-screens}/bin/mirror-screens";
     };
   };
 }
