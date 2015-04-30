@@ -153,17 +153,4 @@
 
   programs.ssh.startAgent = true;
 
-  systemd.services.edwtjo-synchome = {
-     description = "Synchronizes my HOME";
-     wantedBy = [ "multi-user.target" ];
-     after = [ "network.target" ];
-      serviceConfig = {
-       User = config.users.extraUsers.edwtjo.name;
-       Group = config.users.extraUsers.edwtjo.group;
-       Type = "simple";
-       Restart = "always";
-       RestartSec = "1200";
-       ExecStart = "${pkgs.slasktratten}/bin/synchome";
-     };
-   };
 }

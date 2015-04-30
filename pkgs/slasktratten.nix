@@ -17,16 +17,9 @@ stdenv.mkDerivation rec {
         sha256 = "0lwxl1r2jyz9vwx1np2f27zsys8fpin6pr3halzsmnlk76aar17y";
       })} $@
     '';
-    synchome = writeScriptBin "synchome" ''
-      #!/bin/sh
-      source ~/.keychain/$HOSTNAME-sh
-      export PATH=${openssh}/bin:$PATH # since unison calls ssh
-      ${unison}/bin/unison $HOSTNAME -ui text -batch -prefer newer -times -logfile /tmp/unison-$USER-$(${coreutils}/bin/date +%F-%T).log
-    '';
     in
     ''
       mkdir -p $out/bin
-      ln -s ${synchome}/bin/synchome $out/bin
       ln -s ${kouchat}/bin/kouchat $out/bin
     '';
 }

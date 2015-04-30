@@ -29,6 +29,11 @@
   tjonix.admin.enable = true;
   tjonix.admin.users = [ "edwtjo" ];
   tjonix.infinality.enable = true;
+  tjonix.synchome = {
+    enable = true;
+    user = "edwtjo";
+    unison = pkgs.unison_2483;
+  };
 
   nix.package = pkgs.nixUnstable;
 
