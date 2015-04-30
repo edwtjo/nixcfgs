@@ -35,6 +35,8 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  hardware.opengl.driSupport32Bit = true;
+
   systemd.services."screen-mirror-on-dvi" = {
     description = "mirror screens to DVI on X11 startup.";
     after = [ "display-manager.service" ];
