@@ -1,24 +1,28 @@
-{config, pkgs, ...}:
+{ config, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     bzflag
     freeciv
     gnuchess
     lincity_ng
-    # minetest
+    minetest
     nethack
     openlierox
     openttd
-    #scorched3d
+    scorched3d
     superTux
     superTuxKart
     steam
-    steamChrootEnv
     wesnoth
     widelands
-    #tremulous
+    tremulous
     zangband
     xboard
     xonotic
   ];
+
+  hardware = {
+    pulseaudio.enable = false;
+  };
+
 }
