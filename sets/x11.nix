@@ -118,6 +118,20 @@
     rxvt_unicode = {
       perlBindings = true;
     };
+
+    conky = {
+      mpdSupport = true;
+      x11Support = true;
+      curlSupport = true;
+      xdamageSupport = true;
+      imlib2Support = true;
+      alsaSupport = true;
+      wirelessSupport = true;
+      luaSupport = true;
+      rssSupport = true;
+      weatherMetarSupport = true;
+      weatherXoapSupport = true;
+    };
   };
 
   fonts = {
