@@ -103,7 +103,13 @@
         default = "xfce";
       };
 
-      displayManager.kdm.enable = true;
+      displayManager.slim = {
+        enable = true;
+        theme = pkgs.fetchurl {
+          url = "https://github.com/jagajaga/nixos-slim-theme/archive/1.0.tar.gz";
+          sha256 = "08ygjn5vhn3iavh36pdcb15ij3z34qnxp20xh3s1hy2hrp63s6kn";
+        };
+      };
 
     };
   };
