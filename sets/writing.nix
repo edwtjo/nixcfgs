@@ -9,7 +9,8 @@
     dictdWiktionary
     dictdWordnet
     ghostscript
-    #texLiveFull
+    graphviz
+    texLiveFull
     haskellPackages.pandoc
   ];
 }
