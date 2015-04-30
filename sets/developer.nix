@@ -23,7 +23,9 @@
     (with gitAndTools; [
       gitFull
       topGit
+      gitAnnex
     ])
+    tkcvs
     pythonPackages.autopep8
   ];
 }
