@@ -12,95 +12,103 @@
     '';
   };
 
-  environment.systemPackages = with pkgs; [
-    abook
-    bazaar
-    bc
-    cacert
-    curl
-    devicemapper
-    dict
-    docbook5
-    docbook5_xsl
-    emacs24
-    encfs
-    ethtool
-    fcron
-    fetchmail
-    file
-    flex
-    fortune
-    fuse
-    fuse_exfat
-    gnumake
-    gnupg
-    gpm
-    htop
-    iasl
-    idutils
-    inetutils
-    iptables
-    irssi
-    keychain
-    lftp
-    libnotify
-    libtool
-    libxml2
-    libxslt
-    links2
-    lm_sensors
-    lshw
-    lsof
-    ltrace
-    lxc
-    m4
-    manpages
-    mc
-    mercurial
-    monotone
-    mosh
-    nixin
-    nmap
-    openjdk
-    openssh
-    openvpn
-    p7zip
-    patchelf
-    perl
-    polkit
-    posix_man_pages
-    pkgconfig
-    psmisc
-    pv
-    python
-    sshfsFuse
-    screen
-    sqlite
-    strace
-    taskwarrior
-    tcpdump
-    tmux
-    tsocks
-    unison
-    vim
-    wget
-    which
-    zlib
-    zsh
-    ( with perlPackages; [
-    DBI
-    DBDSQLite
-    ])
-    ( with haskellPackages; [
-    DAV
-    dbus
-    hledger
-    zlib
-    ])
-  ];
+  nixpkgs.config.unison.enableX11 = false;
+  programs.zsh.enable = true;
 
-  environment.shellInit = ''
-  '';
+  environment = {
+    systemPackages = with pkgs;
+      [
+        abook
+        bazaar
+        bc
+        cacert
+        curl
+        devicemapper
+        dict
+        docbook5
+        docbook5_xsl
+        emacs24
+        encfs
+        ethtool
+        fdupes
+        fcron
+        fetchmail
+        file
+        flex
+        fortune
+        fuse
+        fuse_exfat
+        gnumake
+        gnupg
+        gpm
+        htop
+        iasl
+        idutils
+        inetutils
+        iptables
+        irssi
+        keychain
+        lftp
+        libnotify
+        libtool
+        libxml2
+        libxslt
+        links2
+        lm_sensors
+        lshw
+        lsof
+        ltrace
+        lxc
+        m4
+        manpages
+        mc
+        mercurial
+        monotone
+        mosh
+        nixin
+        nmap
+        openjdk
+        openssh
+        openssl
+        openvpn
+        p7zip
+        patchelf
+        perl
+        polkit
+        posix_man_pages
+        pkgconfig
+        psmisc
+        pv
+        python
+        sshfsFuse
+        screen
+        sqlite
+        strace
+        taskwarrior
+        tcpdump
+        tmux
+        tsocks
+        unison_24063
+        #uptimed
+        vim
+        wget
+        which
+        zlib
+        zsh
+        slasktratten
+        (with haskellngPackages; [ ShellCheck ])
+      ];
+      shellInit = ''
+      '';
+      variables =
+      {
+      NIX_PATH = pkgs.lib.mkOverride 0 [
+        "nixpkgs=/etc/nixos/nixpkgs"
+        "nixos=/etc/nixos/nixpkgs/nixos"
+        "nixos-config=/etc/nixos/configuration.nix"
+      ];
+    };
+  };
 
   time.timeZone = "Europe/Stockholm";
 
