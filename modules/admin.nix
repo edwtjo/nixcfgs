@@ -6,32 +6,29 @@ let
   cfg = config.tjonix.admin;
 
   remoteAdminOptions = {
+    enable = mkOption {
+      default = false;
+      example = true;
+      description = "Enable support for remote admin.";
+    };
 
-    admin = {
-      enable = mkOption {
-        default = false;
-        example = true;
-        description = "Enable support for remote admin.";
+    users = mkOption {
+      default = [];
+      type = types.listOf types.string;
+      example = {
+        remoteRootKeys = [ "me" "myself" "andi" ];
       };
-
-      users = mkOption {
-        default = [];
-        type = types.listOf types.string;
-        example = {
-          remoteRootKeys = [ "me" "myself" "andi" ];
-        };
-        description = ''
-          These users has remote root ssh, implies ssh service and that they
-          have known SSH public keys.
-          !!NOTE THE INSANE SECURITY RISK THIS IMPOSES!!
-          '';
-      };
+      description = ''
+        These users has remote root ssh, implies ssh service and that they
+        have known SSH public keys.
+        !!NOTE THE INSANE SECURITY RISK THIS IMPOSES!!
+        '';
     };
   };
 in
 
 {
-  options.tjonix = mkOption { options = [ remoteAdminOptions ]; };
+  options.tjonix.admin = remoteAdminOptions;
 
   config = mkIf cfg.enable {
 

@@ -7,21 +7,17 @@ let
   tjopts = options.tjonix;
 
   infinalityOpts = {
-
-    infinality = {
-      enable =  mkOption {
-        default = false;
-        example = true;
-        description = "Enable full infinality support";
-      };
+    enable =  mkOption {
+      default = false;
+      example = true;
+      description = "Enable full infinality support";
     };
-
   };
 
 in
 
 {
-  options.tjonix = mkOption { options = [ infinalityOpts ]; };
+  options.tjonix.infinality = infinalityOpts;
 
   config = mkIf cfg.enable {
     #for fontname in `ls fontconfig/infinality/conf.d.infinality/*.conf`;do echo environment.etc.\"fonts/conf.d/$fontname\".source = ../$fontname\;;done

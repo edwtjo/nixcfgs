@@ -6,19 +6,17 @@ let
 
   cfg = config.tjonix.synchome;
   synchomeOptions = {
-    synchome = {
-      enable = mkOption {
-        default = false;
-      };
-      user = mkOption {
-        default = "nobody";
-      };
-      unison = mkOption {
-        default = pkgs.unison;
-      };
+    enable = mkOption {
+      default = false;
+    };
+    user = mkOption {
+      default = "nobody";
+    };
+    unison = mkOption {
+      default = pkgs.unison;
     };
   };
-  synchome = unison: writeScriptBin "synchome" ''
+  synchome = unison: pkgs.writeScriptBin "synchome" ''
     #!/bin/sh
     source ~/.keychain/$HOSTNAME-sh
     export PATH=${pkgs.openssh}/bin:$PATH # since unison calls ssh
@@ -26,20 +24,20 @@ let
   '';
 in
 {
-  options.tjonix = mkOption { options = [ synchomeOptions ]; };
+  options.tjonix.synchome = synchomeOptions;
 
   config = mkIf cfg.enable {
-    systemd.services."${user}-synchome" = {
+    systemd.services."${cfg.user}-synchome" = {
       description = "Synchronizes users HOME";
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
         serviceConfig = {
-        User = user;
-        Group = user;
+        User = cfg.user;
+        Group = cfg.user;
         Type = "simple";
         Restart = "always";
         RestartSec = "1200";
-        ExecStart = "${synchome unison}/bin/synchome";
+        ExecStart = "${synchome cfg.unison}/bin/synchome";
       };
     };
   };
