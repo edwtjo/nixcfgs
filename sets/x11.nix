@@ -57,6 +57,19 @@
     xorg.xauth
     xournal
     xsel
+    (haskell-ng.packages.ghc7101.override {
+       overrides = self: super: {
+         xmobar = super.xmobar.override {
+           mkDerivation = (attrs: self.mkDerivation (attrs // {
+             configureFlags = [
+              "-fwith_threaded" "-fwith_xpm" "-fwith_dbus"
+              "-fwith_mpris" "-fwith_datezone" "-fwith_alsa"
+              "-f-with_mpd" "-fwith_iwlib" "-fwith_inotify" "-fwith_utf8"
+              "-fwith_xft"
+             ];
+           }));
+         };
+       };}).xmobar
   ];
 
   environment.shellInit = ''
