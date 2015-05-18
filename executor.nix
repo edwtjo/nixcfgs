@@ -15,7 +15,6 @@
     ./sets/x11.nix
     ./sets/developer.nix
     ./user/edwtjo.nix
-    ./user/revvpn.nix
   ];
 
   nix.package = pkgs.nixUnstable;
