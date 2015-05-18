@@ -17,7 +17,12 @@
        User = "edwtjo";
        Restart = "always";
        RestartSec = "300";
-       ExecStart = ''
+       ExecStart = if config.networking.hostName == "executor" then
+       ''
+         ${pkgs.offlineimap}/bin/offlineimap -q -a edward@foi.se
+       ''
+       else
+       ''
          ${pkgs.offlineimap}/bin/offlineimap -q
        '';
      };
