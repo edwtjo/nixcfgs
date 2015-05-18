@@ -1,58 +1,69 @@
-{config, pkgs, ...}:
+{ config, pkgs, ... }:
 
 {
   imports = [
-    ./hw/kvm.nix
+    ./hw/optiflex-f755.nix
+
+    ./pkgs
+    ./modules
+
+    ./secrets/foi.nix
+
     ./sets/common.nix
     ./sets/writing.nix
+    ./sets/mail.nix
     ./sets/x11.nix
     ./sets/developer.nix
-    ./sets/tomcat.nix
+    ./user/edwtjo.nix
+    ./user/revvpn.nix
   ];
 
-  environment.nix = pkgs.nixUnstable;
+  nix.package = pkgs.nixUnstable;
+  nixpkgs.config.allowUnfree = true;
+
+  tjonix.admin.enable = true;
+  tjonix.admin.users = [ "edwtjo" ];
+  tjonix.infinality.enable = true;
+  tjonix.synchome = {
+    enable = true;
+    user = "edwtjo";
+    unison = pkgs.unison_2483;
+  };
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_3_12;
     loader.grub = {
-      device = "/dev/vda";
+      device = "/dev/sda";
     };
   };
 
   fileSystems = {
     "/boot" = {
-      device = "/dev/vda1";
+      device = "UUID=abdb4c2c-bfbb-4231-81fc-487793231ba6";
       fsType = "ext2";
     };
 
     "/" = {
-      device = "/dev/vda3";
+      device = "/dev/mapper/cryptfs";
       fsType = "jfs";
+      encrypted = {
+        enable = true;
+        blkDev = "UUID=6fc36404-b6f5-42d4-803c-97d3cb304cfc";
+        label = "cryptfs";
+      };
     };
   };
 
   swapDevices = [
-    { device = "/dev/vda2"; }
+    { device = "UUID=2daec470-001f-409a-8d2a-36545ecf1d16"; }
   ];
 
   networking = {
     hostName = "executor";
     useDHCP = true;
-    defaultGateway = "192.168.0.1";
-    nameservers = [ "150.227.50.1" ];
-    interfaces = {
-      name = "eth0";
-      ipAddress = "192.168.0.102";
-      subnetMask = "255.255.255.0";
-    };
   };
 
   services = {
-    cups = {
-      enable = true;
-    };
-    openvpn.enable = true;
-    services.samba.enable = true;
-    tomcat.enable = true;
+    samba.enable = true;
+    tomcat.enable = false;
   };
 }
