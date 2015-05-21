@@ -38,12 +38,7 @@ in
       passwordAuthentication = false;
     };
 
-    users.extraUsers.root.openssh.authorizedKeys.keyFiles = let
-      isIn = needle: haystack: filter (p: p == needle) haystack != [];
-      usersWithAdminKeys = attrValues (flip filterAttrs config.users.extraUsers (name: user:
-        (length user.openssh.authorizedKeys.keys != 0) && (isIn user.name config.tjonix.admin.users)
-      ));
-      in
-      concatMap (usr: usr.openssh.authorizedKeys.keys) usersWithAdminKeys;
+    users.extraUsers.root.openssh.authorizedKeys.keyFiles =
+      concatMap (usr: usr.openssh.authorizedKeys.keyFiles) (filter (usr: elem usr.name cfg.users) (attrValues config.users.extraUsers));
   };
 }
