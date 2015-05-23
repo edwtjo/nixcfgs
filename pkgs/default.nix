@@ -1,5 +1,16 @@
 # Trying out sytem wide repo local package definitions :)
 with (import <nixpkgs> { inherit (builtins.currentSystem); }).pkgs;
+
+let
+
+  unison-version = drv: import ../lib/versioned-binary.nix {
+    inherit lib;
+    binary = "unison";
+    pkg = drv;
+  };
+
+in
+
 rec {
   nixpkgs.config.packageOverrides = self : with self; {
 
@@ -25,26 +36,35 @@ rec {
       inherit (pkgs) stdenv fetchFromGitHub;
     };
 
-    unison_22757 = import ./unison-2.27.57.nix {
+    unison_22757 = let drv = (import ./unison-2.27.57.nix {
       inherit (pkgs) stdenv fetchurl lablgtk fontschumachermisc xset makeWrapper ncurses;
       ocaml = ocaml_3_08_0;
-    };
+    });
+    in
+    unison-version drv;
 
-    unison_23252 = import ./unison-2.32.52.nix {
-      inherit (pkgs) stdenv fetchurl lablgtk fontschumachermisc xset makeWrapper ncurses;
-      ocaml = ocaml_3_11_2;
-      enableX11 = false;
-    };
 
-    unison_24063 = import ./unison-2.40.63.nix {
+    unison_23252 = unison-version (import ./unison-2.32.52.nix {
+     inherit (pkgs) stdenv fetchurl lablgtk fontschumachermisc xset makeWrapper ncurses;
+     ocaml = ocaml_3_11_2;
+     enableX11 = false;
+    });
+
+    unison_24063 = unison-version (import ./unison-2.40.63.nix {
       inherit (pkgs) stdenv fetchurl lablgtk fontschumachermisc xset makeWrapper ncurses;
       ocaml = ocaml_4_00_1;
       enableX11 = false;
-    };
+    });
+
+    unison_240102 = unison-version (import ./unison-2.40.102.nix {
+      inherit (pkgs) stdenv fetchurl lablgtk fontschumachermisc xset makeWrapper ncurses;
+      ocaml = ocaml_4_00_1;
+      enableX11 = false;
+    });
 
     unison_2483 = import ./unison-2.48.3.nix {
       inherit (pkgs) stdenv fetchurl lablgtk fontschumachermisc xset makeWrapper ncurses;
-      ocaml = ocaml_4_02_1;
+      ocaml = ocaml_4_02;
       enableX11 = false;
     };
 
