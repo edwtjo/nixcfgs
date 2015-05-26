@@ -8,5 +8,6 @@ with lib;
     ./infinality.nix
     ./synchome.nix
     ./mosh.nix
+    ./nginx.nix
   ];
 }
