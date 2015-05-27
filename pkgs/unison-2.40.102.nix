@@ -3,7 +3,11 @@
 
 stdenv.mkDerivation (rec {
 
-  name = "unison-2.40.102";
+  name = "unison-" + version;
+  version = "2.40.102";
+
+  passthru = { inherit version; };
+
   src = fetchurl {
     url = "http://www.seas.upenn.edu/~bcpierce/unison/download/releases/stable/${name}.tar.gz";
     sha256 = "0m78q5vnsric1virvkmxxx32ipaq0cnj0kbirdbg36395gq94jix";
