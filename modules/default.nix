@@ -9,6 +9,7 @@ with lib;
     ./emacs.nix
     ./synchome.nix
     ./mosh.nix
+    ./firewall.nix
     ./nginx.nix
   ];
 }
