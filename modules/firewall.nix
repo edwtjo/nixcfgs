@@ -225,7 +225,8 @@ in
           # Mark VPN packets, also drop marked packets exiting WAN side
           ${flip concatMapStrings
             (collect (vpn: vpn ? interface && vpn ? mark ) cfg.vpns)
-            (vpn: let mark = toString vpn.mark; in ''
+            (vpn: let mark = toString vpn.mark; in
+            ''
               iptables -A PREROUTING -t mangle -i ${vpn.interface} -j MARK --set-mark ${mark}
               iptables -A PREROUTING -t mangle -i ${vpn.interface} -j CONNMARK --save-mark
               iptables -A PREROUTING -t mangle -j CONNMARK --restore-mark
@@ -240,6 +241,8 @@ in
               iptables -A OUTPUT -t mangle -m owner --gid-owner ${grp} -j MARK --set-mark ${mark}
               ''
               ) vpn.markedGroups}
+              iptables -A OUTPUT -t mangle -s ${vpn.localIp} -j MARK --set-mark ${mark}
+              iptables -A OUTPUT -t mangle -s ${vpn.localIp} -j CONNMARK --save-mark
             '')
           }
 
@@ -248,9 +251,9 @@ in
             (collect (vpn: vpn ? interface && vpn ? ports && vpn ? localIp) cfg.vpns)
             (vpn: (concatMapStrings (port: let portS = toString port; in ''
             iptables -t nat -I PREROUTING -i ${vpn.interface} -p tcp --dport ${portS} -j DNAT --to ${vpn.localIp}:${portS}
-              iptables -A INPUT -p tcp -i ${vpn.interface} --dport ${portS} -j ACCEPT
-              iptables -t nat -I PREROUTING -i ${vpn.interface} -p udp --dport ${portS} -j DNAT --to ${vpn.localIp}:${portS}
-              iptables -A INPUT -p udp -i ${vpn.interface} --dport ${portS} -j ACCEPT
+            iptables -A INPUT -p tcp -i ${vpn.interface} --dport ${portS} -j ACCEPT
+            iptables -t nat -I PREROUTING -i ${vpn.interface} -p udp --dport ${portS} -j DNAT --to ${vpn.localIp}:${portS}
+            iptables -A INPUT -p udp -i ${vpn.interface} --dport ${portS} -j ACCEPT
             '') vpn.ports))
           }
 
